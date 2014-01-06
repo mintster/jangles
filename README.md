@@ -17,9 +17,16 @@ I will be blogging on Java Jangles while it is being developed, which is another
 
 ### Installation and Setup
 
-Java Jangles is built in IntelliJ IDEA. There is at present no Maven configuration or Ant Build file. That will no doubt change over time.
+Java Jangles is built in Eclipse. External Resources include the postgresql jdbc, mysql connector, log4j and others. See the Ant build.xml for the Referenced Libraries.
 
-The database backend of Jangles is planned to be MySQL and PostgreSQL, switchable through a Data Provider Model and a configuration file which specifies which backend is to be used. Setup Scripts for both MySQL and PostgreSQL are not yet available, but will be so with an announcement here.
+The database backend of Jangles is MySQL and PostgreSQL, switchable through a Data Provider Model and a configuration file which specifies which backend is to be used. Setup Scripts for both MySQL and PostgreSQL are available in /src/main/sql.
+
+### Package Explorer
+
+Here is a snapshot of the Eclipse Package Explorer.
+
+
+![This is the caption](http://nixmash.com/x/pics/github/jangles0106.png)
 
 
 
