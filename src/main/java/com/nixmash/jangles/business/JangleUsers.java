@@ -24,4 +24,9 @@ public class JangleUsers {
         }
         return jangleUsers;
     }
+    
+    public static JangleUser GetJangleUser(int userID)
+    {
+    	return GetJangleUsers().get(userID);
+    }
 }

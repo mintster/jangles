@@ -17,4 +17,9 @@ public class JangleUI {
             System.out.println("\tuserid = " + user.UserID + "\tfirstname = " + user.FirstName);
         }
     }
+    
+//    public static JangleUser DisplayUser(int userID)  {
+//       JangleUser jangleUser = JangleUsers.GetJangleUser(userID);
+//       return jangleUser;
+//    }
 }
