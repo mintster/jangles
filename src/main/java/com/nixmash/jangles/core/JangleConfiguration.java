@@ -36,7 +36,7 @@ public class JangleConfiguration implements java.io.Serializable {
         try {
 
             Properties properties = new Properties();
-            properties.load(new FileInputStream("config.properties"));
+            properties.load(new FileInputStream("/ubuntuland/files/eclipse/jangles/config.properties"));
 
             this.DBProvider = properties.getProperty("dbprovider");
 
