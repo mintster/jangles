@@ -1,19 +1,11 @@
-java-jangles
+Java Jangles
 ============
 
-Java Jangles is a project intended to feature java application functions like caching, logging, the data provider pattern, web services, user authentication and other common practices. It has complimentary projects like Janglesweb, which references Jangles Core.
-
-According to the [Urban Dictionary,](http://www.urbandictionary.com/define.php?term=jangles) Jangles is defined as
-
-_A “flavor word” added after absolutely any other noun to make your sentence cooler than anyone else’s._
-
-That’s actually a good description of Java Jangles. Unlike my other GitHub repositories which have clear functions, Java Jangles is, at least initially,  a “flavor application” used to demonstrate various Java practices I find useful.
-
-Jangles also serves as a vehicle for me to transfer many of the coding patterns from .NET to Java that I used during my 10+ years as a .NET developer.
+Java Jangles is a project featuring java application functions like caching, logging, the data provider pattern, web services, user authentication and other common practices. It has client projects like [Jangles-Web](https://github.com/mintster/jangles-java-web) which references Java Jangles Core. Jangles also serves as a vehicle for me to transfer many of the coding patterns from my 10+ years of .NET to Java.
 
 ###  Jangles Features Documentation
 
-Java Jangles is covered extensively at <http://nixmash.com.> Here is a list of Jangles posts to date:
+Java Jangles is documented extensively at <http://nixmash.com.> Here is a list of Jangles posts to date:
 
 * [Creating a Janglesweb WAR using Ant build files referencing Jangles Core and its reference library JARs](http://nixmash.com/java/referencing-project-libraries-in-wars-with-ant/)
 * [Janglesweb JAX-WS Web Client Configuration](http://nixmash.com/java/jangles-jax-ws-web-client-project-online/)
@@ -26,7 +18,7 @@ Java Jangles is covered extensively at <http://nixmash.com.> Here is a list of J
 
 ### Installation and Setup
 
-Java Jangles is built in Eclipse. External Resources include the postgresql jdbc, mysql connector, log4j and others. See the Ant build.xml for the Referenced Libraries.
+Java Jangles is built in Eclipse. External Resources include the postgresql jdbc, mysql connector, log4j and others JARs found in the /lib directory. You can build the project with the Ant build.xml, though because of dependent projects like Janglesweb the build.xml may require slight modification.
 
 The database backend of Jangles is MySQL and PostgreSQL, switchable through a Data Provider Model and a configuration file which specifies which backend is to be used. Setup Scripts for both MySQL and PostgreSQL are available in /src/main/sql.
 
