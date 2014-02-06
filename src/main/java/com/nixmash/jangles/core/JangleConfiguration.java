@@ -7,7 +7,8 @@ import java.util.Properties;
 
 public class JangleConfiguration implements java.io.Serializable {
 
-    
+	//private static final String CONSOLECONFIG  =  System.getProperty("user.dir") + "/config.properties";
+	
 	private static final long serialVersionUID = -720348471534321068L;
 	public String MySqlUser;
     public String MySqlPassword;
@@ -18,6 +19,8 @@ public class JangleConfiguration implements java.io.Serializable {
     public String PostgreSqlPassword;
     public String PostgreSqlUrl;
 
+    public String ConfigFileID;
+    
 //    private static JCS JangleCache;
 
     public static JangleConfiguration Get() {
@@ -47,6 +50,8 @@ public class JangleConfiguration implements java.io.Serializable {
             this.PostgreSqlUrl = properties.getProperty("pgurl");
             this.PostgreSqlUser = properties.getProperty("pguser");
             this.PostgreSqlPassword = properties.getProperty("pgpassword");
+            this.ConfigFileID = properties.getProperty("configfileid");
+            	
 
         } catch (IOException ex) {
             ex.printStackTrace();
