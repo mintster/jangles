@@ -6,8 +6,6 @@ import java.util.Properties;
 
 
 public class JangleConfiguration implements java.io.Serializable {
-
-	//private static final String CONSOLECONFIG  =  System.getProperty("user.dir") + "/config.properties";
 	
 	private static final long serialVersionUID = -720348471534321068L;
 	public String MySqlUser;
@@ -21,8 +19,6 @@ public class JangleConfiguration implements java.io.Serializable {
 
     public String ConfigFileID;
     
-//    private static JCS JangleCache;
-
     public static JangleConfiguration Get() {
 
         JangleConfiguration config = (JangleConfiguration)
@@ -39,7 +35,7 @@ public class JangleConfiguration implements java.io.Serializable {
         try {
 
             Properties properties = new Properties();
-            properties.load(new FileInputStream("/ubuntuland/files/eclipse/jangles/config.properties"));
+            properties.load(new FileInputStream(JangleGlobals.Get().ConfigurationFile));
 
             this.DBProvider = properties.getProperty("dbprovider");
 

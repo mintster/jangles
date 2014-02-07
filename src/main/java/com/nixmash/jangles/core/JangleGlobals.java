@@ -4,6 +4,7 @@ import com.nixmash.jangles.enums.JangleEnvironment;
 
 public class JangleGlobals implements java.io.Serializable {
 
+	private static final long serialVersionUID = -5262833103399133397L;
 	public String ConfigurationFile;
 	public JangleEnvironment CurrentEnvironment;
 
@@ -29,7 +30,7 @@ public class JangleGlobals implements java.io.Serializable {
 				this.CurrentEnvironment = JangleEnvironment.WEBDEVELOPMENT;
 				this.ConfigurationFile = tomcatRoot.substring(0,
 						tomcatRoot.indexOf(".metadata"))
-						+ "config.properties";
+						+ "/jangles/config.properties";
 			} else {
 				this.CurrentEnvironment = JangleEnvironment.WEBPRODUCTION;
 				this.ConfigurationFile = tomcatRoot

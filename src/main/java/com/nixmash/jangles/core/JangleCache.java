@@ -20,7 +20,7 @@ public final class JangleCache {
         try {
 
             jangleCache = JCS.getInstance("default");
-            this.logger = LogFactory.getLog(Jangles.class);
+            //this.logger = LogFactory.getLog(Jangles.class);
 
         } catch (Exception e) {
             e.printStackTrace();

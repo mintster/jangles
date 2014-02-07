@@ -1,14 +1,7 @@
 package com.nixmash.jangles;
 
-import java.util.Enumeration;
-import java.util.Map;
-import java.util.Properties;
-
-import com.nixmash.jangles.business.*;
-import com.nixmash.jangles.containers.*;
 import com.nixmash.jangles.core.*;
 import com.nixmash.jangles.dev.*;
-import com.nixmash.jangles.ui.*;
 
 public class Jangles {
 
@@ -23,6 +16,8 @@ public class Jangles {
 		 */
 
 		JangleDev.ApiSayHello("Main Dude");
+		System.out.println("CONFIG: " + JangleConfiguration.Get().ConfigFileID + "\n");
+		
 		/*
 		 * JangleDev.GetConfigurationProperty(); JangleDev.WriteToLog();
 		 * 
