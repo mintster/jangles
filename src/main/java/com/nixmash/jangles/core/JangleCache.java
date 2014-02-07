@@ -8,19 +8,16 @@ import org.apache.jcs.JCS;
 import org.apache.jcs.access.exception.CacheException;
 import org.apache.jcs.engine.ElementAttributes;
 
+
 import java.io.Serializable;
 
 
 public final class JangleCache {
     private static JangleCache instance;
     private static JCS jangleCache;
-    private Log logger = null;
-
     private JangleCache() {
         try {
-
             jangleCache = JCS.getInstance("default");
-            //this.logger = LogFactory.getLog(Jangles.class);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -28,9 +25,6 @@ public final class JangleCache {
 
     }
 
-    /**
-     * Singleton access point to the manager.
-     */
     public static JangleCache GetInstance() {
         synchronized (JangleCache.class) {
             if (instance == null) {
@@ -54,7 +48,6 @@ public final class JangleCache {
         try {
             jangleCache.put(key, _object, attributes);
         } catch (CacheException e) {
-            this.logger.error("Failure to put object " + key + "in cache: " + e.getMessage());
         }
     }
 
@@ -62,7 +55,6 @@ public final class JangleCache {
         try {
             jangleCache.put(key, _object);
         } catch (CacheException e) {
-            this.logger.error("Failure to put object " + key + "in cache: " + e.getMessage());
         }
     }
 
@@ -80,7 +72,6 @@ public final class JangleCache {
         }
         catch (CacheException e) {
             String msg = "Failure to clear cache:" + e.getMessage();
-            this.logger.error(msg);
         }
     }
 }

@@ -7,6 +7,7 @@ public class JangleGlobals implements java.io.Serializable {
 	private static final long serialVersionUID = -5262833103399133397L;
 	public String ConfigurationFile;
 	public JangleEnvironment CurrentEnvironment;
+	public String RootDirectory;
 
 	public static JangleGlobals Get() {
 
@@ -21,21 +22,27 @@ public class JangleGlobals implements java.io.Serializable {
 
 	public JangleGlobals() {
 
+		String rootDirectory = "";
 		String tomcatRoot = System.getProperty("catalina.base");
 		if (tomcatRoot == null || tomcatRoot.length() == 0) {
+			rootDirectory = System.getProperty("user.dir");
 			this.CurrentEnvironment = JangleEnvironment.CONSOLE;
-			this.ConfigurationFile = System.getProperty("user.dir") + "/config.properties";
+			this.ConfigurationFile = rootDirectory + "/config.properties";
 		} else {
 			if (tomcatRoot.indexOf(".metadata") > 0) {
-				this.CurrentEnvironment = JangleEnvironment.WEBDEVELOPMENT;
-				this.ConfigurationFile = tomcatRoot.substring(0,
+				rootDirectory = tomcatRoot.substring(0,
 						tomcatRoot.indexOf(".metadata"))
-						+ "/jangles/config.properties";
+						+ "janglesweb";
+				this.CurrentEnvironment = JangleEnvironment.WEBDEVELOPMENT;
+				this.ConfigurationFile = rootDirectory + "/conf/dev.properties";
 			} else {
+				rootDirectory = tomcatRoot + "/jangles";
 				this.CurrentEnvironment = JangleEnvironment.WEBPRODUCTION;
 				this.ConfigurationFile = tomcatRoot
-						+ "/jangles/conf/jangles.properties";
+						+ "/jangles/conf/production.properties";
 			}
 		}
+
+		this.RootDirectory = rootDirectory;
 	}
 }

@@ -13,13 +13,19 @@ public class JangleDev {
 		System.out.println(JangleConfiguration.Get().MySqlPassword);
 	}
 
-	private static Log log = LogFactory.getLog(JangleDev.class);
+	private static Log log = JangleLogs.getLog();
+
 
 	public static void WriteToLog() {
 		log.warn("Writing a Warning Message from JangleDev.");
 		if (log.isDebugEnabled()) {
 			log.debug("Writing a Debug Message from JangleDev.");
 		}
+	}
+
+	public static void WriteToLog(String message) {
+		
+		log.info(message);
 	}
 
 	public static void ClearJangleCache() {

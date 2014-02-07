@@ -16,6 +16,7 @@ public class Jangles {
 		 */
 
 		JangleDev.ApiSayHello("Main Dude");
+		//JangleDev.WriteToLog("Writing to log from console");
 		System.out.println("CONFIG: " + JangleConfiguration.Get().ConfigFileID + "\n");
 		
 		/*
