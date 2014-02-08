@@ -16,11 +16,12 @@ public class JangleWebApi {
 
 	public String getHello(String _user) {
 
-		log.info(JangleConfiguration.Get().ConfigFileID + " from web");
+		log.info(JangleConfiguration.Get().ConfigFileID + " from " + JangleGlobals.Get().CurrentEnvironment);
 		String fileID = JangleConfiguration.Get().ConfigFileID + " : "
-				+ JangleGlobals.Get().ConfigurationFile + " : "
-				+ JangleGlobals.Get().RootDirectory + " : " +
-				System.getProperty("catalina.base");
+				+ "CONFIG: " +JangleGlobals.Get().ConfigurationFile + " : "
+				+ "ROOT: " +JangleGlobals.Get().RootDirectory + " : " +
+				"CATALINA.BASE: " + System.getProperty("catalina.base") + " : " +
+				"USER.DIR: " + System.getProperty("user.dir");
 		return fileID;
 	}
 
