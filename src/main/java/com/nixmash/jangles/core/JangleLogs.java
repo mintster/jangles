@@ -15,7 +15,23 @@ public class JangleLogs {
 		JangleEnvironment _jangleEnvironment = JangleGlobals.Get().CurrentEnvironment;
 		Log logger = LogFactory.getLog("Jangles");
 		File propertiesFile = null;
-		if (_jangleEnvironment == JangleEnvironment.CONSOLE) {
+		switch (_jangleEnvironment) {
+		case CONSOLE:
+			propertiesFile = new File(JangleGlobals.Get().RootDirectory,
+					"/log4j.properties");
+			break;
+		case WEBDEVELOPMENT:
+			propertiesFile = new File(JangleGlobals.Get().RootDirectory,
+					"/conf/logdev4j.properties");
+			break;
+		case WEBPRODUCTION:
+			propertiesFile = new File(JangleGlobals.Get().RootDirectory,
+					"/conf/logproduction4j.properties");
+			break;
+		default:
+			break;
+		}
+		/*if (_jangleEnvironment == JangleEnvironment.CONSOLE) {
 			propertiesFile = new File(JangleGlobals.Get().RootDirectory,
 					"/log4j.properties");
 		}
@@ -23,7 +39,7 @@ public class JangleLogs {
 		{
 			propertiesFile = new File(JangleGlobals.Get().RootDirectory,
 					"/conf/log4j.properties");
-		}
+		}*/
 		PropertyConfigurator.configure(propertiesFile.toString());
 
 		return logger;

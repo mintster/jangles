@@ -14,7 +14,7 @@
 	</target>
 
 	<target name="create-jar" depends="distrib-init">
-		<jar destfile="${janglesdist.location}/jangles.jar" basedir="bin" excludes="**.properties"/>
+		<jar destfile="${janglesdist.location}/jangles.jar" basedir="bin" excludes="**/*.properties"/>
 		<echo message="in jar!" />
 
 	</target>

@@ -39,7 +39,7 @@ public class JangleGlobals implements java.io.Serializable {
 				rootDirectory = tomcatRoot + "/jangles";
 				this.CurrentEnvironment = JangleEnvironment.WEBPRODUCTION;
 				this.ConfigurationFile = tomcatRoot
-						+ "/jangles/conf/production.properties";
+						+ "/webapps/jangles/conf/production.properties";
 			}
 		}
 
