@@ -11,22 +11,20 @@ import com.nixmash.jangles.enums.JangleEnvironment;
 public class JangleLogs {
 
 	public static Log getLog() {
-		
+
 		JangleEnvironment _jangleEnvironment = JangleGlobals.Get().CurrentEnvironment;
+		String root = JangleGlobals.Get().RootDirectory;
 		Log logger = LogFactory.getLog("Jangles");
 		File propertiesFile = null;
 		switch (_jangleEnvironment) {
 		case CONSOLE:
-			propertiesFile = new File(JangleGlobals.Get().RootDirectory,
-					"/log4j.properties");
+			propertiesFile = new File(root, "/log4j.properties");
 			break;
 		case WEBDEVELOPMENT:
-			propertiesFile = new File(JangleGlobals.Get().RootDirectory,
-					"/conf/logdev4j.properties");
+			propertiesFile = new File(root, "/conf/logdev4j.properties");
 			break;
 		case WEBPRODUCTION:
-			propertiesFile = new File(JangleGlobals.Get().RootDirectory,
-					"/conf/logproduction4j.properties");
+			propertiesFile = new File(root, "/conf/logproduction4j.properties");
 			break;
 		default:
 			break;
@@ -35,7 +33,5 @@ public class JangleLogs {
 
 		return logger;
 	}
-} 
-
-
+}
 

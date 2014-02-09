@@ -34,7 +34,7 @@ public class JangleDev {
 		cache.Clear();
 	}
 
-	public static void  ApiSayHello(String _user) {
+	public static void ApiSayHello(String _user) {
 		JangleWebApi _jangleWebApi = new JangleWebApi();
 		System.out.println("\n\n" + _jangleWebApi.getHello(_user));
 	}
