@@ -50,3 +50,5 @@ local.properties
 # jangles user-specific logs and properties
 jangles.log
 config.properties
+/src/main/resources/*.properties
+
