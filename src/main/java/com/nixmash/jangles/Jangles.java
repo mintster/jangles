@@ -13,6 +13,8 @@ public class Jangles {
 
 	
 		JangleDev.ApiSayHello("Main Dude");
+		
+		JangleDev.WriteToLog("log4j properties file located again!");
 	
 //		Map<String, String> env = System.getenv();
 //		for (String envName : env.keySet()) {

@@ -12,10 +12,11 @@ public class JangleLogs {
 
 	public static Log getLog() {
 
-		JangleEnvironment _jangleEnvironment = JangleGlobals.Get().CurrentEnvironment;
-		String root = JangleGlobals.Get().RootDirectory;
+		//JangleEnvironment _jangleEnvironment = JangleGlobals.Get().CurrentEnvironment;
+		String log4jConfigurationFile = JangleGlobals.Get().Log4jConfigurationFile;
+		PropertyConfigurator.configure(JangleLogs.class.getResourceAsStream(log4jConfigurationFile));
 		Log logger = LogFactory.getLog("Jangles");
-		File propertiesFile = null;
+	/*	File propertiesFile = null;
 		switch (_jangleEnvironment) {
 		case CONSOLE:
 			propertiesFile = new File(root, "/log4j.properties");
@@ -28,9 +29,9 @@ public class JangleLogs {
 			break;
 		default:
 			break;
-		}
-		PropertyConfigurator.configure(propertiesFile.toString());
-
+		}*/
+		//PropertyConfigurator.configure(propertiesFile.toString());
+		//PropertyConfigurator.configure(JangleLogs.class.getResourceAsStream("/log4jconsole.properties"));
 		return logger;
 	}
 }
