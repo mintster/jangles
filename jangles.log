@@ -1,0 +1,22 @@
+2015-03-05 12:33:48 INFO  CompositeCacheManager:205 - Creating cache manager from config file: /cache.ccf
+2015-03-05 12:33:48 INFO  ThreadPoolManager:447 - thread_pool.default PoolConfiguration = useBoundary = [true] boundarySize = [2000] maximumPoolSize = [150] minimumPoolSize = [4] keepAliveTime = [300000] whenBlockedPolicy = [RUN] startUpSize = [4]
+2015-03-05 12:33:48 INFO  CompositeCacheConfigurator:161 - Setting default auxiliaries to 
+2015-03-05 12:33:48 INFO  CompositeCacheConfigurator:176 - setting defaultCompositeCacheAttributes to [ useLateral = true, useRemote = true, useDisk = true, maxObjs = 1000, maxSpoolPerRun = -1, diskUsagePattern = 0 ]
+2015-03-05 12:33:49 INFO  CompositeCacheConfigurator:189 - setting defaultElementAttributes to [ IS_LATERAL = true, IS_SPOOL = true, IS_REMOTE = true, IS_ETERNAL = false, MaxLifeSeconds = 21600, IdleTime = 1800, CreateTime = 1425576828998, LastAccessTime = 1425576828998, getTimeToLiveSeconds() = 21599, createTime = 1425576828998 ]
+2015-03-05 12:33:49 INFO  CompositeCacheConfigurator:252 - Parsed regions []
+2015-03-05 12:33:49 INFO  CompositeCacheConfigurator:144 - Finished configuration in 22 ms.
+2015-03-05 12:33:49 INFO  OptionConverter:175 - Could not find value for key jcs.region.default.elementattributes
+2015-03-05 12:33:49 INFO  CompositeCacheConfigurator:447 - No special ElementAttribute class defined for key [jcs.region.default.elementattributes], using default class.
+2015-03-05 12:33:49 INFO  LRUMemoryCache:88 - initialized LRUMemoryCache for default
+2015-03-05 12:33:49 INFO  CompositeCache:134 - Constructed cache with name [default] and cache attributes [ useLateral = true, useRemote = true, useDisk = true, maxObjs = 1000, maxSpoolPerRun = -1, diskUsagePattern = 0 ]
+2015-03-05 12:40:07 INFO  CompositeCacheManager:205 - Creating cache manager from config file: /cache.ccf
+2015-03-05 12:40:07 INFO  ThreadPoolManager:447 - thread_pool.default PoolConfiguration = useBoundary = [true] boundarySize = [2000] maximumPoolSize = [150] minimumPoolSize = [4] keepAliveTime = [300000] whenBlockedPolicy = [RUN] startUpSize = [4]
+2015-03-05 12:40:07 INFO  CompositeCacheConfigurator:161 - Setting default auxiliaries to 
+2015-03-05 12:40:07 INFO  CompositeCacheConfigurator:176 - setting defaultCompositeCacheAttributes to [ useLateral = true, useRemote = true, useDisk = true, maxObjs = 1000, maxSpoolPerRun = -1, diskUsagePattern = 0 ]
+2015-03-05 12:40:07 INFO  CompositeCacheConfigurator:189 - setting defaultElementAttributes to [ IS_LATERAL = true, IS_SPOOL = true, IS_REMOTE = true, IS_ETERNAL = false, MaxLifeSeconds = 21600, IdleTime = 1800, CreateTime = 1425577207455, LastAccessTime = 1425577207455, getTimeToLiveSeconds() = 21599, createTime = 1425577207455 ]
+2015-03-05 12:40:07 INFO  CompositeCacheConfigurator:252 - Parsed regions []
+2015-03-05 12:40:07 INFO  CompositeCacheConfigurator:144 - Finished configuration in 11 ms.
+2015-03-05 12:40:07 INFO  OptionConverter:175 - Could not find value for key jcs.region.default.elementattributes
+2015-03-05 12:40:07 INFO  CompositeCacheConfigurator:447 - No special ElementAttribute class defined for key [jcs.region.default.elementattributes], using default class.
+2015-03-05 12:40:07 INFO  LRUMemoryCache:88 - initialized LRUMemoryCache for default
+2015-03-05 12:40:07 INFO  CompositeCache:134 - Constructed cache with name [default] and cache attributes [ useLateral = true, useRemote = true, useDisk = true, maxObjs = 1000, maxSpoolPerRun = -1, diskUsagePattern = 0 ]
