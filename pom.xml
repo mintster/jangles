@@ -61,6 +61,12 @@
             <groupId>org.adrianwalker</groupId>
             <artifactId>multiline-string</artifactId>
             <version>${multiline-string.version}</version>
+            <exclusions>
+                <exclusion>
+                	<artifactId>tools</artifactId>
+                	<groupId>sun.jdk</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.jcs</groupId>

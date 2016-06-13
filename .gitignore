@@ -56,3 +56,4 @@ local.properties
 jangles.log
 
 /.idea/
+/jangles.iml
