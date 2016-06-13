@@ -11,3 +11,4 @@ gen
 /nixmash-jangles.iml
 .gitignore
 
+/target/
