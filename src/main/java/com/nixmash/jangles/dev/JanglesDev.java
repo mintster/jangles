@@ -31,177 +31,183 @@ import java.util.Properties;
 
 public class JanglesDev {
 
-	public static void main(String[] argv) {
-	}
+    public static void main(String[] argv) {
+        System.out.println(addJanglesUser());
+        displayPostgresUsers();
+    }
 
-	// region Multiline Strings
+    // region Multiline Strings
 
-	// @formatter:off
+    // @formatter:off
 
-	/**
-	 * <p class="mashupintro">
-	 * <span class="mashupimage"><img alt=""
-	 * src="http://nixmash.com/x/pics/mashup/marion010114.jpg"
-	 * /></span>Greetings from Vermont and welcome to the launch of NixMashup!
-	 * In each NixMashup I'll be covering geeky topics I find interesting or
-	 * helpful in my current work. Most NixMashup links can also be found on the
-	 * NixMash Twitter feed at <a
-	 * href="http://twitter.com/nixmash">http://twitter.com/nixmash.</a>
-	 * </p>
-	 * <p class="mashupintroplus">
-	 * In the inaugural NixMashup we'll cover several Java and Eclipse topics,
-	 * working with JAR files, a bash command or two, Don Henley, and underwater
-	 * power producing kites.
-	 * </p>
-	 * 
-	 * <div class="mashuplinks"> <div class="mashup">
-	 * <p class="linktitle">
-	 * <a href="http://getdeb.net/updates/Ubuntu/13.10#how_to_install">Get the
-	 * Latest Ubuntu Apps on GetDeb</a>
-	 * </p>
-	 * <p class="linktext">
-	 * Here are instructions on <a href="something">configuring your Ubuntu</a>
-	 * to get the latest open source and freeware applications from GetDeb, a
-	 * repository which extends the official Ubuntu repositories with the latest
-	 * versions and new applications.
-	 * </p>
-	 * <p class="hashtags">
-	 * <a href="http://nixmash.com/links/?linux">#linux</a>, <a
-	 * href="http://nixmash.com/links/?getdeb">#getdeb</a>, <a
-	 * href="http://nixmash.com/links/?ppa">#ppa</a>, <a
-	 * href="http://nixmash.com/links/?ubuntu">#ubuntu</a>
-	 * </p>
-	 * 
-	 * </div> <div class="mashup">
-	 * <p class="linktitle">
-	 * <a
-	 * href="http://www.vogella.com/articles/JavaServerFaces/article.html#jsf"
-	 * >JSF JavaServer Faces Tutorial</a>
-	 * </p>
-	 * <p class="linktext">
-	 * Lars Vogel has written many excellent tutorials in Java, Eclipse, Android
-	 * development and related topics. This JSF with Eclipse Tutorial is one of
-	 * them.
-	 * </p>
-	 * <p class="hashtags">
-	 * <a href="http://nixmash.com/links/?java">#java</a>, <a
-	 * href="http://nixmash.com/links/?jsf">#jsf</a>, <a
-	 * href="http://nixmash.com/links/?eclipse">#eclipse</a>
-	 * </p>
-	 * 
-	 * </div> </div>
-	 */
-	@Multiline
-	private static String msg;
+    /**
+     * <p class="mashupintro">
+     * <span class="mashupimage"><img alt=""
+     * src="http://nixmash.com/x/pics/mashup/marion010114.jpg"
+     * /></span>Greetings from Vermont and welcome to the launch of NixMashup!
+     * In each NixMashup I'll be covering geeky topics I find interesting or
+     * helpful in my current work. Most NixMashup links can also be found on the
+     * NixMash Twitter feed at <a
+     * href="http://twitter.com/nixmash">http://twitter.com/nixmash.</a>
+     * </p>
+     * <p class="mashupintroplus">
+     * In the inaugural NixMashup we'll cover several Java and Eclipse topics,
+     * working with JAR files, a bash command or two, Don Henley, and underwater
+     * power producing kites.
+     * </p>
+     * <p/>
+     * <div class="mashuplinks"> <div class="mashup">
+     * <p class="linktitle">
+     * <a href="http://getdeb.net/updates/Ubuntu/13.10#how_to_install">Get the
+     * Latest Ubuntu Apps on GetDeb</a>
+     * </p>
+     * <p class="linktext">
+     * Here are instructions on <a href="something">configuring your Ubuntu</a>
+     * to get the latest open source and freeware applications from GetDeb, a
+     * repository which extends the official Ubuntu repositories with the latest
+     * versions and new applications.
+     * </p>
+     * <p class="hashtags">
+     * <a href="http://nixmash.com/links/?linux">#linux</a>, <a
+     * href="http://nixmash.com/links/?getdeb">#getdeb</a>, <a
+     * href="http://nixmash.com/links/?ppa">#ppa</a>, <a
+     * href="http://nixmash.com/links/?ubuntu">#ubuntu</a>
+     * </p>
+     * <p/>
+     * </div> <div class="mashup">
+     * <p class="linktitle">
+     * <a
+     * href="http://www.vogella.com/articles/JavaServerFaces/article.html#jsf"
+     * >JSF JavaServer Faces Tutorial</a>
+     * </p>
+     * <p class="linktext">
+     * Lars Vogel has written many excellent tutorials in Java, Eclipse, Android
+     * development and related topics. This JSF with Eclipse Tutorial is one of
+     * them.
+     * </p>
+     * <p class="hashtags">
+     * <a href="http://nixmash.com/links/?java">#java</a>, <a
+     * href="http://nixmash.com/links/?jsf">#jsf</a>, <a
+     * href="http://nixmash.com/links/?eclipse">#eclipse</a>
+     * </p>
+     * <p/>
+     * </div> </div>
+     */
+    @Multiline
+    private static String msg;
 
-	// @formatter:on
+    // @formatter:on
 
-	public static void displayParsedHTML() {
-		Document doc = Jsoup.parse(msg);
-		Element intro = doc.select("p.mashupintro").first();
-		print("intro: %s\n", intro.text());
+    public static void displayParsedHTML() {
+        Document doc = Jsoup.parse(msg);
+        Element intro = doc.select("p.mashupintro").first();
+        print("intro: %s\n", intro.text());
 
-		Elements links = doc.select("div.mashup");
-		for (Element link : links) {
+        Elements links = doc.select("div.mashup");
+        for (Element link : links) {
 
-			Element title = link.select("p.linktitle a").first();
-			print("title:%s\nurl:%s\n", title.attr("href"), title.text());
+            Element title = link.select("p.linktitle a").first();
+            print("title:%s\nurl:%s\n", title.attr("href"), title.text());
 
-			URL aURL = null;
-			try {
-				aURL = new URL(title.attr("href"));
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
+            URL aURL = null;
+            try {
+                aURL = new URL(title.attr("href"));
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
 
-			print("domain: %s\n",
-					StringUtils.remove(aURL.getHost().toLowerCase(), "www."));
-			Element text = link.select("p.linktext").first();
-			print("text:%s\nhtml: %s\n", text.text(), text.html());
+            print("domain: %s\n",
+                    StringUtils.remove(aURL.getHost().toLowerCase(), "www."));
+            Element text = link.select("p.linktext").first();
+            print("text:%s\nhtml: %s\n", text.text(), text.html());
 
-			Elements tags = link.select("p.hashtags a");
-			for (Element tag : tags) {
-				print("tag: %s", tag.text());
-			}
-			print("%s", "\n");
-		}
+            Elements tags = link.select("p.hashtags a");
+            for (Element tag : tags) {
+                print("tag: %s", tag.text());
+            }
+            print("%s", "\n");
+        }
 
-		// System.out.println(doc.text());
-	}
+        // System.out.println(doc.text());
+    }
 
-	private static void print(String msg, Object... args) {
-		System.out.println(String.format(msg, args));
-	}
+    private static void print(String msg, Object... args) {
+        System.out.println(String.format(msg, args));
+    }
 
-	public static void displayMultiLineString() {
-		System.out.println(msg);
-	}
+    public static void displayMultiLineString() {
+        System.out.println(msg);
+    }
 
-	// endregion
+    // endregion
 
-	// region configuration
+    // region configuration
 
-	public static void displayConfigurationProperty() {
-		System.out.println(JanglesConfiguration.get().janglesRoot);
-	}
+    public static void displayConfigurationProperty() {
+        System.out.println(JanglesConfiguration.get().janglesRoot);
+    }
 
-	// endregion
+    // endregion
 
-	// region logs
+    // region logs
 
-	public static void writeToLog() {
-		JanglesLogs.instance().logWarning(
-				"Writing a Warning Message from Code Johnny.");
-		if (JanglesLogs.getLog().isDebugEnabled()) {
-			JanglesLogs.instance().logDebug(
-					"Writing a Debug Message from Code Johnny.");
-		}
-	}
+    public static void writeToLog() {
+        JanglesLogs.instance().logWarning(
+                "Writing a Warning Message from Code Johnny.");
+        if (JanglesLogs.getLog().isDebugEnabled()) {
+            JanglesLogs.instance().logDebug(
+                    "Writing a Debug Message from Code Johnny.");
+        }
+    }
 
-	public static void writeToLog(String message) {
-		JanglesLogs.instance().logInfo(message);
-	}
+    public static void writeToLog(String message) {
+        JanglesLogs.instance().logInfo(message);
+    }
 
-	// endregion
+    // endregion
 
-	// region users
+    // region users
 
-	public static void displayPostgresUsers() {
-		JanglesConnections.clearOutputConnectionCache();
-		displayUsers(JanglesUsers.getJanglesUsers());
-	}
+    public static int addJanglesUser() {
+        JanglesUser janglesUser = new JanglesUser("harry","password","Harry");
+        return JanglesUsers.addJanglesUser(janglesUser);
+    }
 
-	public static void displayMySqlUsers() {
-		JanglesConnections.clearInputConnectionCache();
-		displayUsers(JanglesUsers.getMysqlUsers());
-	}
+    public static void displayPostgresUsers() {
+        JanglesConnections.clearOutputConnectionCache();
+        displayUsers(JanglesUsers.getJanglesUsers());
+    }
 
-	private static void displayUsers(List<JanglesUser> janglesUsers) {
+    public static void displayMySqlUsers() {
+        JanglesConnections.clearInputConnectionCache();
+        displayUsers(JanglesUsers.getMysqlUsers());
+    }
+
+    private static void displayUsers(List<JanglesUser> janglesUsers) {
         System.out.println();
 
         for (JanglesUser janglesUser : janglesUsers) {
-			System.out.println("User: " + janglesUser.firstName + " "
-					+ janglesUser.lastName);
-		}
-	}
+            System.out.println("User: " + janglesUser.displayName);
+        }
+    }
 
-	public static JanglesUser getMySqlUser(int userId) {
-		return JanglesUsers.getMysqlUser(userId);
-	}
+    public static JanglesUser getMySqlUser(int userId) {
+        return JanglesUsers.getMysqlUser(userId);
+    }
 
-	public static JanglesUser getOutputUser(int userId) {
-		return JanglesUsers.getJanglesUsers(userId);
-	}
+    public static JanglesUser getOutputUser(int userId) {
+        return JanglesUsers.getJanglesUser(userId);
+    }
 
-	// endregion
+    // endregion
 
-	// region caching
+    // region caching
 
-	public static void clearJanglesCache(String cachedObject) {
-		JanglesCache cache = JanglesCache.getInstance();
-		cache.remove(cachedObject);
-		cache.clear();
-	}
+    public static void clearJanglesCache(String cachedObject) {
+        JanglesCache cache = JanglesCache.getInstance();
+        cache.remove(cachedObject);
+        cache.clear();
+    }
 
     public static void clearJangleCache() {
         JanglesCache cache = JanglesCache.getInstance();
@@ -209,77 +215,76 @@ public class JanglesDev {
         cache.clear();
     }
 
-	// endregion
+    // endregion
 
-	// region Connnections
+    // region Connnections
 
-	public static JanglesConnection getConnection(String name) {
-		JanglesConnections janglesConnections = null;
-		JanglesConnection currentConnection = null;
+    public static JanglesConnection getConnection(String name) {
+        JanglesConnections janglesConnections = null;
+        JanglesConnection currentConnection = null;
 
-		try {
-			JAXBContext jc = JAXBContext
-					.newInstance(JanglesConnections.class);
-			Unmarshaller unmarshaller = jc.createUnmarshaller();
-			File xml = new File(JanglesConfiguration.get().connectionXmlPath);
-			janglesConnections = (JanglesConnections) unmarshaller
-					.unmarshal(xml);
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-		for (JanglesConnection janglesConnection : janglesConnections
-				.getConnections()) {
-			if (janglesConnection.name.equalsIgnoreCase(name))
-				currentConnection = janglesConnection;
-		}
+        try {
+            JAXBContext jc = JAXBContext
+                    .newInstance(JanglesConnections.class);
+            Unmarshaller unmarshaller = jc.createUnmarshaller();
+            File xml = new File(JanglesConfiguration.get().connectionXmlPath);
+            janglesConnections = (JanglesConnections) unmarshaller
+                    .unmarshal(xml);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        for (JanglesConnection janglesConnection : janglesConnections
+                .getConnections()) {
+            if (janglesConnection.name.equalsIgnoreCase(name))
+                currentConnection = janglesConnection;
+        }
 
-		return currentConnection;
-	}
+        return currentConnection;
+    }
 
-	public static void displayMySqlConnection() {
-		JanglesConnection janglesConnection = JanglesConnections
-				.getMySqlConnection();
-		System.out.println(janglesConnection.getUrl());
-	}
+    public static void displayMySqlConnection() {
+        JanglesConnection janglesConnection = JanglesConnections
+                .getMySqlConnection();
+        System.out.println(janglesConnection.getUrl());
+    }
 
-	public static void displayPgConnection() {
-		JanglesConnection janglesConnection = JanglesConnections
-				.getPgConnection();
-		System.out.println(janglesConnection.getUrl());
-	}
+    public static void displayPgConnection() {
+        JanglesConnection janglesConnection = JanglesConnections
+                .getPgConnection();
+        System.out.println(janglesConnection.getUrl());
+    }
 
-	// endregion
+    // endregion
 
-	// region plugins
+    // region plugins
 
-	public static String sayHello(String hello) {
-		return "NixMashupDev says " + hello + "!";
-	}
+    public static String sayHello(String hello) {
+        return "NixMashupDev says " + hello + "!";
+    }
 
-	// endregion
+    // endregion
 
-	// region properties
+    // region properties
 
-	public static void CreatePropertiesFile(String rootPath) {
-		// create .niximport properties file in user home directory -- NOT USED
+    public static void CreatePropertiesFile(String rootPath) {
+        // create .niximport properties file in user home directory -- NOT USED
 
-		File propertiesFile = new File(System.getProperty("user.home")
-				+ "/test.properties");
-		FileInputStream stream = null;
-		if (propertiesFile.isFile()) {
-			try {
-				stream = new FileInputStream(propertiesFile);
-				Properties p = new Properties(System.getProperties());
-				p.load(stream);
-				p.getProperty("niximport.rootpath", rootPath);
-			} catch (IOException e) {
-				JanglesLogs.instance().logError(e.getMessage());
-			}
-		}
-	}
+        File propertiesFile = new File(System.getProperty("user.home")
+                + "/test.properties");
+        FileInputStream stream = null;
+        if (propertiesFile.isFile()) {
+            try {
+                stream = new FileInputStream(propertiesFile);
+                Properties p = new Properties(System.getProperties());
+                p.load(stream);
+                p.getProperty("niximport.rootpath", rootPath);
+            } catch (IOException e) {
+                JanglesLogs.instance().logError(e.getMessage());
+            }
+        }
+    }
 
-    public static void showAllProperties()
-    {
+    public static void showAllProperties() {
         Map<String, String> env = System.getenv();
         for (String envName : env.keySet()) {
             System.out.format("%s=%s%n", envName, env.get(envName));
@@ -294,7 +299,7 @@ public class JanglesDev {
         }
     }
 
-	// endregion
+    // endregion
 
     // region logging
 

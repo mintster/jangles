@@ -13,7 +13,7 @@ public class Jangles {
 //        JanglesDev.apiSayHello("Main Dude");
 
         JanglesDev.displayPostgresUsers();
-        JanglesDev.displayMySqlUsers();
+//        JanglesDev.displayMySqlUsers();
 
 
     }

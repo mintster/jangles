@@ -1,51 +1,86 @@
+
+
 package com.nixmash.jangles.containers;
 
-/**
- * Created with IntelliJ IDEA.
- * User: daveburke
- * Date: 10/24/13
- * Time: 2:07 PM
- */
-public class JanglesUser implements java.io.Serializable {
+import java.sql.Timestamp;
+
+public class JanglesUser {
 
     public JanglesUser() {
     }
 
-    public JanglesUser(int userId, String firstName, String lastName) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public JanglesUser(String userName, String password, String displayName) {
+        this.userName = userName;
+        this.password = password;
+        this.displayName = displayName;
     }
 
+    // region properties
+
     public int userId;
-    public String firstName;
-    public String lastName;
-    
-	public int getUserId() {
-		return userId;
-	}
+    public String userName;
+    public String password;
+    public String displayName;
+    public Timestamp dateCreated;
+    public Boolean isActive;
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
-	public String getFirstName() {
-		return firstName;
-	}
+// endregion
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+// region getters/setters
 
-	public String getLastName() {
-		return lastName;
-	}
+    public int getUserId() {
+        return userId;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public Timestamp getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Timestamp dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+
+// endregion
 
 }
 
 
+	

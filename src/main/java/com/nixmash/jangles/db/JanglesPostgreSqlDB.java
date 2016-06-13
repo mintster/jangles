@@ -1,6 +1,7 @@
 package com.nixmash.jangles.db;
 
 import com.nixmash.jangles.containers.JanglesUser;
+import com.nixmash.jangles.core.JanglesLogs;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -131,7 +132,32 @@ public class JanglesPostgreSqlDB extends JanglesPostgreSql {
 		}
 	}
 
-	// endregion
+
+    @Override
+    public int addJanglesUser(JanglesUser janglesUser) throws SQLException {
+        CallableStatement cs = postgreSqlCall("{call p_jangles_users_add( ?, ?, ?)}");
+        int userId = -1;
+
+        try {
+
+            cs.setString(1, janglesUser.userName);
+            cs.setString(2, janglesUser.password);
+            cs.setString(3, janglesUser.displayName);
+            ResultSet rs = cs.executeQuery();
+            if (rs.next()) {
+                userId = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            JanglesLogs.instance().logError(e.getMessage());
+        }
+
+        postgreSqlCallClose();
+        return userId;
+    }
+
+
+
+    // endregion
 
 
 }

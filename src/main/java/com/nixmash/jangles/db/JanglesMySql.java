@@ -35,9 +35,12 @@ public abstract class JanglesMySql {
 	// region Populate List Objects from ResultSets
 
 	public static void populateJanglesUserList(ResultSet rs, JanglesUser janglesUser) throws SQLException {
-		janglesUser.setUserId(rs.getInt("user_id"));
-		janglesUser.setFirstName(rs.getString("first_name"));
-		janglesUser.setLastName(rs.getString("last_name"));
+        janglesUser.setUserId(rs.getInt("user_id"));
+        janglesUser.setUserName(rs.getString("user_name"));
+        janglesUser.setPassword(rs.getString("password"));
+        janglesUser.setDisplayName(rs.getString("display_name"));
+        janglesUser.setDateCreated(rs.getTimestamp("date_created"));
+        janglesUser.setIsActive(rs.getBoolean("is_active"));
 	}
 
 	// endregion

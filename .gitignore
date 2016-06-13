@@ -55,4 +55,4 @@ local.properties
 # jangles user-specific logs and properties
 jangles.log
 
-
+/.idea/

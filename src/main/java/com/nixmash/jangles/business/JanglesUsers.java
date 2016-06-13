@@ -49,8 +49,21 @@ public class JanglesUsers {
 		// endregion
 		
 	// region PostgreSql Users
-	
-	public static List<JanglesUser> getJanglesUsers() {
+
+    public static int addJanglesUser(JanglesUser janglesUser) {
+        int userId = -1;
+        JanglesPostgreSql db = JanglesPostgreSql.loadProvider();
+        try {
+            userId = db.addJanglesUser(janglesUser);
+        } catch (Exception e) {
+            JanglesLogs.instance().logError(e.getMessage());
+        }
+
+        return userId;
+
+    }
+
+    public static List<JanglesUser> getJanglesUsers() {
 		return getJanglesUsers(true);
 	}
 
@@ -73,7 +86,7 @@ public class JanglesUsers {
 		return janglesUsers;
 	}
 
-	public static JanglesUser getJanglesUsers(int userID) {
+	public static JanglesUser getJanglesUser(int userID) {
 		return getJanglesUsers().get(userID);
 	}
 

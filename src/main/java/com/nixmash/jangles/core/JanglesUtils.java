@@ -18,20 +18,4 @@ public class JanglesUtils {
 		return StringUtils.uncapitalize(pluralize(singular));
 	}
 
-	public static String rootPath() {
-
-		String _rootPath = StringUtils.EMPTY;
-
-		String tomcatRoot = System.getProperty("catalina.base");
-		if (tomcatRoot == null || tomcatRoot.length() == 0) {
-			return _rootPath;
-		} else {
-
-			if (tomcatRoot.indexOf(".metadata") > 0) {
-				_rootPath = "/wicket-bootstrap-web";
-			} else
-				_rootPath = StringUtils.EMPTY;
-		}
-		return _rootPath;
-	}
 }

@@ -30,9 +30,7 @@ public class JanglesMySqlDB extends JanglesMySql {
 			this.statement = this.connection.createStatement();
 			rs = this.statement.executeQuery(query);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return rs;
@@ -45,9 +43,7 @@ public class JanglesMySqlDB extends JanglesMySql {
 			this.connection = mySqlConnection();
 			this.callablestatement = this.connection.prepareCall(statement);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return callablestatement;

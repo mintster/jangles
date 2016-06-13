@@ -3,8 +3,6 @@ Java Jangles
 
 Java Jangles is a project featuring java application functions like caching, logging, the data provider pattern, web services, user authentication and other common practices. It has client projects like [Jangles-Web](https://github.com/mintster/jangles-java-web) which references Java Jangles Core. Jangles also serves as a vehicle for me to transfer many of the coding patterns from my 10+ years of .NET to Java.
 
-Jangles also serves as the backend to my NixMash Wicket-Bootstrap application currently in development and soon to be on GitHub.
-
 ###  Jangles Features Documentation
 
 Java Jangles is documented extensively at <http://nixmash.com.> Here is a list of Jangles posts to date:
@@ -27,7 +25,6 @@ The database backend of Jangles is MySQL and PostgreSQL, switchable through a Da
 ### Package Explorer
 
 Here is a snapshot of the Eclipse Package Explorer.
-
 
 ![This is the caption](http://nixmash.com/x/pics/github/jangles0106.png)
 
