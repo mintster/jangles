@@ -1,21 +1,16 @@
 package com.nixmash.jangles;
 
-import com.nixmash.jangles.dev.JanglesDev;
+import com.nixmash.jangles.dev.JanglesUI;
 
 public class Jangles {
 
 	public static void main(String[] argv) {
-		displayDev();
+		init();
     }
 
-	private static void displayDev() {
-
-//        JanglesDev.apiSayHello("Main Dude");
-
-        JanglesDev.displayPostgresUsers();
-//        JanglesDev.displayMySqlUsers();
-
-
+	private static void init() {
+        JanglesUI.apiSayHello("Main Dude");
+//        JanglesUI.displayMySqlUsers();
     }
 
 }

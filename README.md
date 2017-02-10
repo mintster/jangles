@@ -1,11 +1,11 @@
 Java Jangles
 ============
 
-Java Jangles is a project featuring java application functions like caching, logging, the data provider pattern, web services, user authentication and other common practices. It has client projects like [Jangles-Web](https://github.com/mintster/jangles-java-web) which references Java Jangles Core. Jangles also serves as a vehicle for me to transfer many of the coding patterns from my 10+ years of .NET to Java.
+Java Jangles is a project featuring java application functions like caching, logging, the data provider pattern, web services, user authentication and other common practices. It also served as a vehicle for me to transition from many years of .NET development to Java as the patterns in Jangles are very similar to those used in .NET circa 2012.
 
 ###  Jangles Features Documentation
 
-Java Jangles is documented extensively at <http://nixmash.com.> Here is a list of Jangles posts to date:
+Several posts at <http://nixmash.com> covered code in Java Jangles. Here is a partial list:
 
 * [Creating a Janglesweb WAR using Ant build files referencing Jangles Core and its reference library JARs](http://nixmash.com/java/referencing-project-libraries-in-wars-with-ant/)
 * [Janglesweb JAX-WS Web Client Configuration](http://nixmash.com/java/jangles-jax-ws-web-client-project-online/)
@@ -18,15 +18,15 @@ Java Jangles is documented extensively at <http://nixmash.com.> Here is a list o
 
 ### Installation and Setup
 
-Java Jangles is built in Eclipse. External Resources include the postgresql jdbc, mysql connector, log4j and others JARs found in the /lib directory. You can build the project with the Ant build.xml, though because of dependent projects like Janglesweb the build.xml may require slight modification.
+Jangles is good to go with MySQL and supports PostgreSQL. The setup Script for MySQL is in /docs. While PostgreSQL IS supported in the app, to use it you must first create a table based on the MySQL `jangles_users` script in your PostgreSQL database.
 
-The database backend of Jangles is MySQL and PostgreSQL, switchable through a Data Provider Model and a configuration file which specifies which backend is to be used. Setup Scripts for both MySQL and PostgreSQL are available in /src/main/sql.
+Configuration files are located in `/resources` as web as external to the app in a location you specify in `/resources/jangles.properties,` Examples of the `global.properties` and `connections.xml` configuration files are located in `/docs.`
 
 ### Package Explorer
 
 Here is a snapshot of the Eclipse Package Explorer.
 
-![This is the caption](http://nixmash.com/x/pics/github/jangles0106.png)
+![This is the caption](http://nixmash.com/x/pics/github/jangles0209.png)
 
 
 **Last Updated:** *2/9/17*

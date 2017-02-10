@@ -29,7 +29,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-public class JanglesDev {
+//import org.adrianwalker.multilinestring.Multiline;
+
+public class JanglesUI {
 
     public static void main(String[] argv) {
         System.out.println(addJanglesUser());
@@ -259,7 +261,7 @@ public class JanglesDev {
     // region plugins
 
     public static String sayHello(String hello) {
-        return "NixMashupDev says " + hello + "!";
+        return "JanglesUI says " + hello + "!";
     }
 
     // endregion
@@ -306,9 +308,9 @@ public class JanglesDev {
     private static Log log = JanglesLogs.getLog();
 
     public static void WriteToLog() {
-        log.warn("Writing a Warning Message from JangleDev.");
+        log.warn("Writing a Warning Message from JanglesUI.");
         if (log.isDebugEnabled()) {
-            log.debug("Writing a debug Message from JangleDev");
+            log.debug("Writing a debug Message from JanglesUI");
         }
     }
 
