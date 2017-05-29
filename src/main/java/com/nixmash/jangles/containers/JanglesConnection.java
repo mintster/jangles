@@ -70,5 +70,15 @@ public class JanglesConnection implements java.io.Serializable {
 		return this.urlbase + this.database;
 	}
 
-
+	@Override
+	public String toString() {
+		return "JanglesConnection{" +
+				"name='" + name + '\'' +
+				", environment='" + environment + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", urlbase='" + urlbase + '\'' +
+				", database='" + database + '\'' +
+				'}';
+	}
 }

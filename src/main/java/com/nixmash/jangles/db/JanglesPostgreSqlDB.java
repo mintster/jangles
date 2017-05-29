@@ -22,7 +22,7 @@ public class JanglesPostgreSqlDB extends JanglesPostgreSql {
 	// endregion
 
 	// region PostgreSQL Connection and Query Processes
-	protected Connection postgreSqlConnection() throws ClassNotFoundException, SQLException {
+	private Connection postgreSqlConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("org.postgresql.Driver");
 		return DriverManager.getConnection(janglesConnection.getUrl(), janglesConnection.getUsername(),
 				janglesConnection.getPassword());
@@ -36,9 +36,7 @@ public class JanglesPostgreSqlDB extends JanglesPostgreSql {
 			this.statement = this.connection.createStatement();
 			rs = this.statement.executeQuery(query);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return rs;
@@ -52,9 +50,7 @@ public class JanglesPostgreSqlDB extends JanglesPostgreSql {
 			this.statement = this.connection.createStatement();
 			result = this.statement.executeUpdate(query);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
@@ -66,9 +62,7 @@ public class JanglesPostgreSqlDB extends JanglesPostgreSql {
 			this.connection = postgreSqlConnection();
 			this.callableStatement = this.connection.prepareCall(statement);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return callableStatement;
@@ -80,9 +74,7 @@ public class JanglesPostgreSqlDB extends JanglesPostgreSql {
 			this.connection = postgreSqlConnection();
 			this.preparedStatement = this.connection.prepareStatement(statement);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return preparedStatement;

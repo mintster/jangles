@@ -8,7 +8,6 @@ import com.nixmash.jangles.core.JanglesCache;
 import com.nixmash.jangles.core.JanglesConfiguration;
 import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.core.JanglesLogs;
-import org.adrianwalker.multilinestring.Multiline;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.jsoup.Jsoup;
@@ -16,9 +15,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-//import org.adrianwalker.multilinestring.Multiline;
+import static com.github.alessiosantacroce.multilinestring.MultilineStringLiteral.newString;
 
 public class JanglesUI {
 
@@ -95,10 +91,62 @@ public class JanglesUI {
      * <p/>
      * </div> </div>
      */
-    @Multiline
-    private static String msg;
 
     // @formatter:on
+
+    private static String msg = newString(/*
+                        <p class="mashupintro">
+                        <span class="mashupimage"><img alt=""
+                        src="http://nixmash.com/x/pics/mashup/marion010114.jpg"
+                        /></span>Greetings from Vermont and welcome to the launch of NixMashup!
+                        In each NixMashup I'll be covering geeky topics I find interesting or
+                        helpful in my current work. Most NixMashup links can also be found on the
+                        NixMash Twitter feed at <a
+                        href="http://twitter.com/nixmash">http://twitter.com/nixmash.</a>
+                        </p>
+                        <p class="mashupintroplus">
+                        In the inaugural NixMashup we'll cover several Java and Eclipse topics,
+                        working with JAR files, a bash command or two, Don Henley, and underwater
+                        power producing kites.
+                        </p>
+                        <p/>
+                        <div class="mashuplinks"> <div class="mashup">
+                        <p class="linktitle">
+                        <a href="http://getdeb.net/updates/Ubuntu/13.10#how_to_install">Get the
+                        Latest Ubuntu Apps on GetDeb</a>
+                        </p>
+                        <p class="linktext">
+                        Here are instructions on <a href="something">configuring your Ubuntu</a>
+                        to get the latest open source and freeware applications from GetDeb, a
+                        repository which extends the official Ubuntu repositories with the latest
+                        versions and new applications.
+                        </p>
+                        <p class="hashtags">
+                        <a href="http://nixmash.com/links/?linux">#linux</a>, <a
+                        href="http://nixmash.com/links/?getdeb">#getdeb</a>, <a
+                        href="http://nixmash.com/links/?ppa">#ppa</a>, <a
+                        href="http://nixmash.com/links/?ubuntu">#ubuntu</a>
+                        </p>
+                        <p/>
+                        </div> <div class="mashup">
+                        <p class="linktitle">
+                        <a
+                        href="http://www.vogella.com/articles/JavaServerFaces/article.html#jsf"
+                        >JSF JavaServer Faces Tutorial</a>
+                        </p>
+                        <p class="linktext">
+                        Lars Vogel has written many excellent tutorials in Java, Eclipse, Android
+                        development and related topics. This JSF with Eclipse Tutorial is one of
+                        them.
+                        </p>
+                        <p class="hashtags">
+                        <a href="http://nixmash.com/links/?java">#java</a>, <a
+                        href="http://nixmash.com/links/?jsf">#jsf</a>, <a
+                        href="http://nixmash.com/links/?eclipse">#eclipse</a>
+                        </p>
+                        <p/>
+                        </div> </div>
+                        */);
 
     public static void displayParsedHTML() {
         Document doc = Jsoup.parse(msg);
@@ -171,7 +219,7 @@ public class JanglesUI {
     // region users
 
     public static int addJanglesUser() {
-        JanglesUser janglesUser = new JanglesUser("harry","password","Harry");
+        JanglesUser janglesUser = new JanglesUser("harry", "password", "Harry Harwood");
         return JanglesUsers.addJanglesUser(janglesUser);
     }
 
@@ -181,6 +229,7 @@ public class JanglesUI {
     }
 
     public static void displayMySqlUsers() {
+        log.info("Displaying MySQL Users...");
         JanglesConnections.clearInputConnectionCache();
         displayUsers(JanglesUsers.getMysqlUsers());
     }
@@ -220,29 +269,6 @@ public class JanglesUI {
     // endregion
 
     // region Connnections
-
-    public static JanglesConnection getConnection(String name) {
-        JanglesConnections janglesConnections = null;
-        JanglesConnection currentConnection = null;
-
-        try {
-            JAXBContext jc = JAXBContext
-                    .newInstance(JanglesConnections.class);
-            Unmarshaller unmarshaller = jc.createUnmarshaller();
-            File xml = new File(JanglesConfiguration.get().connectionXmlPath);
-            janglesConnections = (JanglesConnections) unmarshaller
-                    .unmarshal(xml);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        for (JanglesConnection janglesConnection : janglesConnections
-                .getConnections()) {
-            if (janglesConnection.name.equalsIgnoreCase(name))
-                currentConnection = janglesConnection;
-        }
-
-        return currentConnection;
-    }
 
     public static void displayMySqlConnection() {
         JanglesConnection janglesConnection = JanglesConnections

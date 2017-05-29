@@ -6,7 +6,7 @@ import com.nixmash.jangles.core.JanglesConnections;
 import java.sql.*;
 import java.util.List;
 
-public abstract class JanglesPostgreSql {
+public abstract class JanglesPostgreSql extends JanglesSql {
 
 	// region loadProvider
 
@@ -35,21 +35,5 @@ public abstract class JanglesPostgreSql {
     public abstract int addJanglesUser(JanglesUser janglesUser) throws SQLException;
 
 	// endregion
-
-	// region Populate List Objects from ResultSets
-
-	public static void populateJanglesUserList(ResultSet rs, JanglesUser janglesUser) throws SQLException {
-        janglesUser.setUserId(rs.getInt("user_id"));
-        janglesUser.setUserName(rs.getString("user_name"));
-        janglesUser.setPassword(rs.getString("password"));
-        janglesUser.setDisplayName(rs.getString("display_name"));
-        janglesUser.setDateCreated(rs.getTimestamp("date_created"));
-        janglesUser.setIsActive(rs.getBoolean("is_active"));
-	}
-
-
-	// endregion
-
-	
 
 }

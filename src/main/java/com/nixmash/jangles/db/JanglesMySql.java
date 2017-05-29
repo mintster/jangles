@@ -4,11 +4,10 @@ import com.nixmash.jangles.containers.JanglesConnection;
 import com.nixmash.jangles.containers.JanglesUser;
 import com.nixmash.jangles.core.JanglesConnections;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public abstract class JanglesMySql {
+public abstract class JanglesMySql extends JanglesSql {
 
 	final static String mySqlProvider = "com.nixmash.jangles.db.JanglesMySqlDB";
 	private static JanglesMySql provider;
@@ -32,17 +31,5 @@ public abstract class JanglesMySql {
 
 	// endregion
 
-	// region Populate List Objects from ResultSets
-
-	public static void populateJanglesUserList(ResultSet rs, JanglesUser janglesUser) throws SQLException {
-        janglesUser.setUserId(rs.getInt("user_id"));
-        janglesUser.setUserName(rs.getString("user_name"));
-        janglesUser.setPassword(rs.getString("password"));
-        janglesUser.setDisplayName(rs.getString("display_name"));
-        janglesUser.setDateCreated(rs.getTimestamp("date_created"));
-        janglesUser.setIsActive(rs.getBoolean("is_active"));
-	}
-
-	// endregion
 
 }

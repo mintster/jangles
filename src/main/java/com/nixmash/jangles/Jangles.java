@@ -9,8 +9,7 @@ public class Jangles {
     }
 
 	private static void init() {
-        JanglesUI.apiSayHello("Main Dude");
-//        JanglesUI.displayMySqlUsers();
-    }
+        JanglesUI.displayMySqlUsers();
+	}
 
 }

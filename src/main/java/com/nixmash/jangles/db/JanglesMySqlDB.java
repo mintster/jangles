@@ -9,6 +9,7 @@ import java.util.List;
 public class JanglesMySqlDB extends JanglesMySql {
 
 	// region Properties
+
 	private Connection connection;
 	private Statement statement;
 	private CallableStatement callablestatement;
@@ -16,7 +17,7 @@ public class JanglesMySqlDB extends JanglesMySql {
 	// endregion
 
 	// region MySQL Connection and Query Processes
-	protected Connection mySqlConnection() throws ClassNotFoundException, SQLException {
+	private Connection mySqlConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
 		return DriverManager.getConnection(janglesConnection.getUrl(),
 				janglesConnection.username, janglesConnection.password);
