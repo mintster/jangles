@@ -189,8 +189,31 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.nixmash.jangles.Jangles</mainClass>
+                        </manifest>
+                    </archive>
+                    <finalName>jangles</finalName>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+     <!--       <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
@@ -205,7 +228,7 @@
                     <mainClass>com.nixmash.jangles.Jangles</mainClass>
                     <arguments />
                 </configuration>
-            </plugin>
+            </plugin>-->
 
         </plugins>
     </build>

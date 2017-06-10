@@ -1,9 +1,6 @@
 package com.nixmash.jangles;
 
-import com.nixmash.jangles.containers.JanglesConnection;
-import com.nixmash.jangles.core.JanglesConnections;
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -16,24 +13,7 @@ import static com.github.alessiosantacroce.multilinestring.MultilineStringLitera
  */
 
 @RunWith(JUnit4.class)
-public class JanglesTests {
-
-    // region Connections
-
-    @Test
-    public void getMySqlConnection() {
-        JanglesConnection janglesConnection = JanglesConnections.getMySqlConnection();
-        Assert.assertEquals(janglesConnection.environment, "mysql");
-    }
-
-    @Test
-    public void getPgConnection() {
-        JanglesConnection janglesConnection = JanglesConnections.getPgConnection();
-        Assert.assertEquals(janglesConnection.environment, "postgresql");
-    }
-
-    // endregion
-
+public class MultilineTests {
 
     // region Multiline Strings
 

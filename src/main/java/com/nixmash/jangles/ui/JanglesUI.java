@@ -1,4 +1,4 @@
-package com.nixmash.jangles.dev;
+package com.nixmash.jangles.ui;
 
 import com.nixmash.jangles.business.JanglesApi;
 import com.nixmash.jangles.business.JanglesUsers;

@@ -1,6 +1,6 @@
 package com.nixmash.jangles;
 
-import com.nixmash.jangles.dev.JanglesUI;
+import com.nixmash.jangles.ui.JanglesUI;
 
 public class Jangles {
 
