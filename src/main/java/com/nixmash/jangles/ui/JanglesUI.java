@@ -4,6 +4,7 @@ import com.nixmash.jangles.business.JanglesApi;
 import com.nixmash.jangles.business.JanglesUsers;
 import com.nixmash.jangles.containers.JanglesUser;
 import com.nixmash.jangles.core.JanglesConnections;
+import com.nixmash.jangles.enums.JanglesProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,28 +17,18 @@ public class JanglesUI {
 
     private static final Logger logger = LoggerFactory.getLogger(JanglesUI.class);
 
-    private JanglesUsers janglesUsers = new JanglesUsers();
+    private JanglesUsers janglesUsers = new JanglesUsers(JanglesProfile.MYSQL);
 
     public void init() {
-        showAllProperties();
+        displayJanglesUsers();
     }
 
     // region users
 
-    public int addJanglesUser() {
-        JanglesUser janglesUser = new JanglesUser("harry", "password", "Harry Harwood");
-        return janglesUsers.addJanglesUser(janglesUser);
-    }
-
-    public void displayPostgresUsers() {
-        JanglesConnections.clearOutputConnectionCache();
-        displayUsers(janglesUsers.getJanglesUsers());
-    }
-
-    public void displayMySqlUsers() {
+    public void displayJanglesUsers() {
         logger.info("Displaying MySQL Users...");
         JanglesConnections.clearInputConnectionCache();
-        displayUsers(janglesUsers.getMysqlUsers());
+        displayUsers(janglesUsers.getJanglesUsers());
     }
 
     private void displayUsers(List<JanglesUser> janglesUsers) {
@@ -48,11 +39,7 @@ public class JanglesUI {
         }
     }
 
-    public JanglesUser getMySqlUser(int userId) {
-        return janglesUsers.getMysqlUser(userId);
-    }
-
-    public JanglesUser getOutputUser(int userId) {
+    public JanglesUser getJanglesUser(int userId) {
         return janglesUsers.getJanglesUser(userId);
     }
 

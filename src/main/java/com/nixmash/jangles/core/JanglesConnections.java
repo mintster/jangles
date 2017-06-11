@@ -38,7 +38,12 @@ public class JanglesConnections {
 		return getConnection
                 (JanglesConfiguration.get().mysqlDbConnectionName);
 	}
-	
+
+	public static JanglesConnection getH2Connection() {
+		return getConnection
+				(JanglesConfiguration.get().h2DbConnectionName);
+	}
+
 	public static JanglesConnection getPgConnection() {
 		return getConnection(
                 JanglesConfiguration.get().pgDbConnectionName);

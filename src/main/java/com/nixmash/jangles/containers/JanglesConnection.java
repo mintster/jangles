@@ -3,82 +3,87 @@ package com.nixmash.jangles.containers;
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "connection")
-@XmlAccessorType (XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class JanglesConnection implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1268527199886230105L;
+    private static final long serialVersionUID = 1268527199886230105L;
 
-	public JanglesConnection() {
-	};
+    public JanglesConnection() {
+    }
 
-	public String name;
-	public String environment;
-	public String username;
-	public String password;
-	public String urlbase;
-	public String database;
+    ;
 
-	public String getName() {
-		return name;
-	}
+    public String name;
+    public String environment;
+    public String username;
+    public String password;
+    public String urlbase;
+    public String database;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getEnvironment() {
-		return environment;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setEnvironment(String environment) {
-		this.environment = environment;
-	}
+    public String getEnvironment() {
+        return environment;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setEnvironment(String environment) {
+        this.environment = environment;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getUrlbase() {
-		return urlbase;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setUrlbase(String urlbase) {
-		this.urlbase = urlbase;
-	}
+    public String getUrlbase() {
+        return urlbase;
+    }
 
-	public String getDatabase() {
-		return database;
-	}
+    public void setUrlbase(String urlbase) {
+        this.urlbase = urlbase;
+    }
 
-	public void setDatabase(String database) {
-		this.database = database;
-	}
+    public String getDatabase() {
+        return database;
+    }
 
-	public String getUrl() {
-		return this.urlbase + this.database;
-	}
+    public void setDatabase(String database) {
+        this.database = database;
+    }
 
-	@Override
-	public String toString() {
-		return "JanglesConnection{" +
-				"name='" + name + '\'' +
-				", environment='" + environment + '\'' +
-				", username='" + username + '\'' +
-				", password='" + password + '\'' +
-				", urlbase='" + urlbase + '\'' +
-				", database='" + database + '\'' +
-				'}';
-	}
+    public String getUrl() {
+        if (this.environment.equals("h2"))
+            return this.urlbase;
+        else
+            return this.urlbase + this.database;
+    }
+
+    @Override
+    public String toString() {
+        return "JanglesConnection{" +
+                "name='" + name + '\'' +
+                ", environment='" + environment + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", urlbase='" + urlbase + '\'' +
+                ", database='" + database + '\'' +
+                '}';
+    }
 }

@@ -19,8 +19,9 @@ public class JanglesConfiguration implements java.io.Serializable {
 	public String pgDbConnectionName;
 	public String connectionXmlPath;
 	public String globalPropertiesFile;
-	
-	// endregion
+    public String h2DbConnectionName;
+
+    // endregion
 
 	// region get()
 
@@ -50,11 +51,11 @@ public class JanglesConfiguration implements java.io.Serializable {
 
 		this.configFileId = properties.getProperty("configfileid");
 		this.mysqlDbConnectionName = properties.getProperty("mysql.db.connection");
+		this.h2DbConnectionName = properties.getProperty("h2.db.connection");
 		this.pgDbConnectionName = properties.getProperty("pg.db.connection");
 		this.connectionXmlPath = properties.getProperty("connection.xml.path");
 		this.globalPropertiesFile = properties.getProperty("global.properties.file");
 
-		
 	}
 
 	// endregion

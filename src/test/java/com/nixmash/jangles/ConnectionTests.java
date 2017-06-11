@@ -23,9 +23,9 @@ public class ConnectionTests {
     }
 
     @Test
-    public void getPgConnection() {
-        JanglesConnection janglesConnection = JanglesConnections.getPgConnection();
-        Assert.assertEquals(janglesConnection.environment, "postgresql");
+    public void getH2Connection() {
+        JanglesConnection janglesConnection = JanglesConnections.getH2Connection();
+        Assert.assertEquals(janglesConnection.environment, "h2");
     }
 
     // endregion
