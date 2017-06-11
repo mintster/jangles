@@ -1,9 +1,9 @@
 Java Jangles
 ============
 
-Java Jangles is a project featuring java application functions like caching, logging, the data provider pattern, web services, user authentication and other common practices. Jangles Core Library also served as a vehicle for me to transition from .NET to Java in 2012, as you'll find the patterns in Jangles similar to those used in .NET at the time. Or at least by me, anyway.
+Jangles is a very lean Java application with basic features like caching, logging, dual MySQL / H2 JDBC configuration, global properties and more. It is intended to be used as a codebase for Java Applications.
 
-###  Jangles Features Documentation
+###  Jangles Posts on NixMash
 
 Several posts at <http://nixmash.com> covered code in Java Jangles. Here is a partial list:
 
@@ -18,18 +18,11 @@ Several posts at <http://nixmash.com> covered code in Java Jangles. Here is a pa
 
 ### Installation and Setup
 
-Jangles is good to go with MySQL and supports PostgreSQL. The setup Script for MySQL is in `/docs.` While PostgreSQL *IS* supported in the app, to use it you must first create a table based on the MySQL `jangles_users` script in your PostgreSQL database.
+Jangles is good to go with MySQL and H2 for testing. The setup Script for MySQL is in `/install/sql.` H2 scripts are in `/test/resources.`  A `jangles.properties` file is located in `/resources`  Global Properties and Connections are defined externally to the application in `global.properties` and `connections.xml` respectfully. Examples are located in `/install/samples.`
 
-Configuration files are located in `/resources` as web as external to the app in a location you specify in `/resources/jangles.properties,` Examples of the `global.properties` and `connections.xml` configuration files are located in `/docs.`
+After you listed the path to `connections.xml` in `/resources/jangles.properties`, configured the MySQL Connection in `connections.xml` and run the MySQL Setup script in `/install/sql` you can use Maven or your IDE to run the Jangles Demo which does nothing more than display a list of users from the MySQL database.
 
-### Package Explorer
-
-Here is a snapshot of the Project Explorer in IntelliJ.
-
-![This is the caption](http://nixmash.com/x/pics/github/jangles0209.png)
-
-
-**Last Updated:** *2/9/17*
+**Last Updated:** *6/11/17*
 
 
 

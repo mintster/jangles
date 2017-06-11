@@ -55,6 +55,7 @@ local.properties
 # jangles user-specific logs and properties
 jangles.log
 
-/.idea/
-/jangles.iml
-/dev/
+.idea/
+jangles.iml
+dev/
+

@@ -1,17 +1,12 @@
 package com.nixmash.jangles;
 
-import com.nixmash.jangles.business.JanglesUsers;
-import com.nixmash.jangles.containers.JanglesUser;
 import com.nixmash.jangles.core.JanglesConfiguration;
-import com.nixmash.jangles.enums.JanglesProfile;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 
