@@ -1,6 +1,8 @@
 package com.nixmash.jangles.core;
 
 import com.nixmash.jangles.containers.JanglesConnection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -15,6 +17,8 @@ import java.util.List;
 @XmlRootElement(name = "connections")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class JanglesConnections {
+
+	private static final Logger logger = LoggerFactory.getLogger(JanglesConnections.class);
 
 	public JanglesConnections() {
 	};
@@ -84,7 +88,7 @@ public class JanglesConnections {
 		try {
 			JanglesCache.getInstance().remove(connectionCacheKey(name));
 		} catch (Exception e) {
-			JanglesLogs.instance().logError(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 

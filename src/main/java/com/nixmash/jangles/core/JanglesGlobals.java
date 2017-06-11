@@ -1,5 +1,8 @@
 package com.nixmash.jangles.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,8 +12,7 @@ public class JanglesGlobals implements java.io.Serializable {
 
 	private static final long serialVersionUID = -5262833103399133397L;
 
-	public String log4jConfigurationFile;
-	public String janglesRoot;
+	private static final Logger logger = LoggerFactory.getLogger(JanglesGlobals.class);
 
 	public String applicationId;
 	public String apiNoSearchResults;
@@ -44,7 +46,7 @@ public class JanglesGlobals implements java.io.Serializable {
 			
 
 		} catch (IOException ex) {
-			JanglesLogs.instance().logError(ex.getMessage());
+			logger.error(ex.getMessage());
 		} finally {
 			if (input != null) {
 				try {
@@ -54,9 +56,6 @@ public class JanglesGlobals implements java.io.Serializable {
 				}
 			}
 		}
-		
-		this.janglesRoot = JanglesConfiguration.get().janglesRoot;
-		this.log4jConfigurationFile = "/log4j.properties";
 		
 	}
 

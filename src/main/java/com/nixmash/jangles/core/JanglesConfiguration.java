@@ -1,5 +1,8 @@
 package com.nixmash.jangles.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.util.Properties;
 
@@ -7,10 +10,11 @@ public class JanglesConfiguration implements java.io.Serializable {
 
 	// region properties
 
+	private static final Logger logger = LoggerFactory.getLogger(JanglesConfiguration.class);
+
 	private static final long serialVersionUID = -720348471534321068L;
 
 	public String configFileId;
-	public String janglesRoot;
 	public String mysqlDbConnectionName;
 	public String pgDbConnectionName;
 	public String connectionXmlPath;
@@ -36,18 +40,15 @@ public class JanglesConfiguration implements java.io.Serializable {
 		if (rootDirectory == null)
 			rootDirectory = System.getProperty("user.dir");
 
-		this.janglesRoot = rootDirectory + "/";
-
 		Properties properties = new Properties();
 
 		try {
 			properties.load(getClass().getResourceAsStream("/jangles.properties"));
 		} catch (IOException e) {
-			JanglesLogs.instance().logError(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 		this.configFileId = properties.getProperty("configfileid");
-		this.janglesRoot = rootDirectory + "/";
 		this.mysqlDbConnectionName = properties.getProperty("mysql.db.connection");
 		this.pgDbConnectionName = properties.getProperty("pg.db.connection");
 		this.connectionXmlPath = properties.getProperty("connection.xml.path");

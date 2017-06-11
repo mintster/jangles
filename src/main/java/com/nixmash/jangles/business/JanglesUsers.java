@@ -3,9 +3,10 @@ package com.nixmash.jangles.business;
 import com.nixmash.jangles.containers.JanglesUser;
 import com.nixmash.jangles.core.JanglesCache;
 import com.nixmash.jangles.core.JanglesConfiguration;
-import com.nixmash.jangles.core.JanglesLogs;
 import com.nixmash.jangles.db.JanglesMySql;
 import com.nixmash.jangles.db.JanglesPostgreSql;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -13,13 +14,16 @@ import java.util.List;
 
 public class JanglesUsers {
 
+	private static final Logger logger = LoggerFactory.getLogger(JanglesUsers.class);
+	private JanglesPostgreSql db = JanglesPostgreSql.loadProvider();
+
 	// region MySql Users
 	
-		public static List<JanglesUser> getMysqlUsers() {
+		public List<JanglesUser> getMysqlUsers() {
 			return getMysqlUsers(true);
 		}
 
-		public static List<JanglesUser> getMysqlUsers(boolean useCached) {
+		public List<JanglesUser> getMysqlUsers(boolean useCached) {
 
 			String key = InputListCacheKey();
 
@@ -30,7 +34,7 @@ public class JanglesUsers {
 				try {
 					janglesUsers = db.getJanglesUsers();
 				} catch (SQLException e) {
-					JanglesLogs.instance().logError(e.getMessage());
+					logger.error(e.getMessage());
 				}
 				JanglesCache.getInstance().put(key, (Serializable) janglesUsers);
 			}
@@ -38,11 +42,11 @@ public class JanglesUsers {
 			return janglesUsers;
 		}
 
-		public static JanglesUser getMysqlUser(int userID) {
+		public JanglesUser getMysqlUser(int userID) {
 			return getMysqlUsers().get(userID);
 		}
 
-		private static String InputListCacheKey() {
+		private String InputListCacheKey() {
 			return String.format("JanglesMysqlUserList-%s", JanglesConfiguration.get().mysqlDbConnectionName);
 		}
 		
@@ -50,24 +54,23 @@ public class JanglesUsers {
 		
 	// region PostgreSql Users
 
-    public static int addJanglesUser(JanglesUser janglesUser) {
+    public int addJanglesUser(JanglesUser janglesUser) {
         int userId = -1;
-        JanglesPostgreSql db = JanglesPostgreSql.loadProvider();
         try {
             userId = db.addJanglesUser(janglesUser);
         } catch (Exception e) {
-            JanglesLogs.instance().logError(e.getMessage());
+            logger.error(e.getMessage());
         }
 
         return userId;
 
     }
 
-    public static List<JanglesUser> getJanglesUsers() {
+    public List<JanglesUser> getJanglesUsers() {
 		return getJanglesUsers(true);
 	}
 
-	public static List<JanglesUser> getJanglesUsers(boolean useCached) {
+	public List<JanglesUser> getJanglesUsers(boolean useCached) {
 
 		String key = OutputListCacheKey();
 
@@ -78,7 +81,7 @@ public class JanglesUsers {
 			try {
 				janglesUsers = db.getJanglesUsers();
 			} catch (SQLException e) {
-				JanglesLogs.instance().logError(e.getMessage());
+				logger.error(e.getMessage());
 			}
 			JanglesCache.getInstance().put(key, (Serializable) janglesUsers);
 		}
@@ -86,11 +89,11 @@ public class JanglesUsers {
 		return janglesUsers;
 	}
 
-	public static JanglesUser getJanglesUser(int userID) {
+	public JanglesUser getJanglesUser(int userID) {
 		return getJanglesUsers().get(userID);
 	}
 
-	private static String OutputListCacheKey() {
+	private String OutputListCacheKey() {
 		return String.format("JanglesUserList-%s", JanglesConfiguration.get().pgDbConnectionName);
 	}
 	

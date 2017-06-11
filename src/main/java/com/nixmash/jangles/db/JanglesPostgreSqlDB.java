@@ -1,7 +1,8 @@
 package com.nixmash.jangles.db;
 
 import com.nixmash.jangles.containers.JanglesUser;
-import com.nixmash.jangles.core.JanglesLogs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ import java.util.List;
  */
 
 public class JanglesPostgreSqlDB extends JanglesPostgreSql {
+
+	private static final Logger logger = LoggerFactory.getLogger(JanglesPostgreSqlDB.class);
 
 	// region Properties
 	private Connection connection;
@@ -140,7 +143,7 @@ public class JanglesPostgreSqlDB extends JanglesPostgreSql {
                 userId = rs.getInt(1);
             }
         } catch (SQLException e) {
-            JanglesLogs.instance().logError(e.getMessage());
+			logger.error(e.getMessage());
         }
 
         postgreSqlCallClose();

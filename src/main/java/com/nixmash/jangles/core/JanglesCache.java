@@ -4,17 +4,21 @@ package com.nixmash.jangles.core;
 import org.apache.jcs.JCS;
 import org.apache.jcs.access.exception.CacheException;
 import org.apache.jcs.engine.ElementAttributes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
 
 public final class JanglesCache {
+
+    private static final Logger logger = LoggerFactory.getLogger(JanglesCache.class);
+
     private static JanglesCache instance;
     private static JCS janglesCache;
+
     private JanglesCache() {
         try {
-//            FileOutputStream f = new FileOutputStream("/home/daveburke/web/jangles/deverror.log");
-//            System.setErr(new PrintStream(f));
         	janglesCache = JCS.getInstance("default");
 
         } catch (Exception e) {
@@ -70,7 +74,7 @@ public final class JanglesCache {
         }
         catch (CacheException e) {
             String msg = "Failure to clear cache:" + e.getMessage();
-            JanglesLogs.instance().logError(msg);
+            logger.error(msg);
         }
     }
 }

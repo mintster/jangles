@@ -4,12 +4,12 @@ import com.nixmash.jangles.ui.JanglesUI;
 
 public class Jangles {
 
+
 	public static void main(String[] argv) {
-		init();
+		JanglesUI janglesUI = new JanglesUI();
+		janglesUI.init();
     }
 
-	private static void init() {
-        JanglesUI.displayMySqlUsers();
-	}
+
 
 }
