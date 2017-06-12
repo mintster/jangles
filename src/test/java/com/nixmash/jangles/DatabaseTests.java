@@ -1,23 +1,23 @@
 package com.nixmash.jangles;
 
-import com.nixmash.jangles.business.JanglesUsers;
-import com.nixmash.jangles.containers.JanglesUser;
 import com.nixmash.jangles.core.JanglesCache;
 import com.nixmash.jangles.core.JanglesConfiguration;
+import com.nixmash.jangles.core.JanglesConnections;
+import com.nixmash.jangles.dto.JanglesConnection;
+import com.nixmash.jangles.dto.JanglesUser;
 import com.nixmash.jangles.enums.JanglesProfile;
+import com.nixmash.jangles.service.JanglesUsers;
+import org.apache.ibatis.jdbc.ScriptRunner;
 import org.assertj.core.api.Assertions;
-import org.h2.tools.RunScript;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,9 +33,11 @@ import static org.junit.Assert.assertNull;
 @RunWith(JUnit4.class)
 public class DatabaseTests   {
 
+    // region Properties and Local Variables
+
     private static final Logger logger = LoggerFactory.getLogger(DatabaseTests.class);
 
-    private JanglesUsers janglesUsers = new JanglesUsers(JanglesProfile.H2);
+    private JanglesUsers janglesUsers = new JanglesUsers(JanglesProfile.TESTING);
     private String key = userListCacheKey();
     private  List<JanglesUser> users;
     private boolean isSetup = false;
@@ -44,37 +46,58 @@ public class DatabaseTests   {
         return String.format("JanglesUserList-%s", JanglesConfiguration.get().configFileId);
     }
 
-    @Before
-    public void setup(){
+    // endregion
+
+    // region @BeforeClass and @AfterClass
+
+    @BeforeClass
+    public static void setup(){
         try {
-            setH2State("/create.sql");
+            configureTestDb("/populate.sql");
         } catch (FileNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-    @After
-    public void tearDown() {
+    @AfterClass
+    public static void tearDown() {
         try {
-            setH2State("/drop.sql");
+            configureTestDb("/clear.sql");
         } catch (FileNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void setH2State(String sql) throws FileNotFoundException, SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
+    private static void configureTestDb(String sql) throws FileNotFoundException, SQLException {
+
+        // @formatter:off
+
+        JanglesConnection janglesConnection = JanglesConnections.getTestConnection();
+        Connection conn = DriverManager.getConnection(
+                janglesConnection.getUrl(),
+                janglesConnection.getUsername(),
+                janglesConnection.getPassword());
         Statement st = conn.createStatement();
-        File script = new File(getClass().getResource(sql).getFile());
-        RunScript.execute(conn, new FileReader(script));
+        File script = new File(DatabaseTests.class.getResource(sql).getFile());
+        ScriptRunner sr = new ScriptRunner(conn);
+        sr.setLogWriter(null);
+        Reader reader = new BufferedReader(new FileReader(script));
+        sr.runScript(reader);
+
+        // @formatter:on
     }
+
+    // endregion
+
+    // region JanglesUsers CRUD and Cache Tests
 
     @Test
-    public void getJanglesUsers() {
-
-        for (JanglesUser janglesUser : janglesUsers.getJanglesUsers()) {
-            logger.info("jangles user: " + janglesUser);
-        }
+    public void createJanglesUserTest() {
+        int before = janglesUsers.getJanglesUsers().size();
+        JanglesUser newUser = TestUtils.createJanglesUser("usertest");
+        janglesUsers.createJanglesUser(newUser);
+        int after = janglesUsers.getJanglesUsers().size();
+        assertEquals(before + 1, after);
     }
 
     @Test
@@ -101,5 +124,7 @@ public class DatabaseTests   {
         List<JanglesUser> cachedUsers = (List<JanglesUser>) JanglesCache.getInstance().get(key);
         assertNull(cachedUsers);
     }
+
+    // endregion
 
 }

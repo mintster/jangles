@@ -1,8 +1,8 @@
 package com.nixmash.jangles.ui;
 
-import com.nixmash.jangles.business.JanglesApi;
-import com.nixmash.jangles.business.JanglesUsers;
-import com.nixmash.jangles.containers.JanglesUser;
+import com.nixmash.jangles.service.JanglesApi;
+import com.nixmash.jangles.service.JanglesUsers;
+import com.nixmash.jangles.dto.JanglesUser;
 import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.enums.JanglesProfile;
 import org.slf4j.Logger;
@@ -21,6 +21,7 @@ public class JanglesUI {
 
     public void init() {
         displayJanglesUsers();
+        apiSayHello("bob");
     }
 
     // region users
@@ -39,7 +40,7 @@ public class JanglesUI {
         }
     }
 
-    public JanglesUser getJanglesUser(int userId) {
+    public JanglesUser getJanglesUser(Long userId) {
         return janglesUsers.getJanglesUser(userId);
     }
 

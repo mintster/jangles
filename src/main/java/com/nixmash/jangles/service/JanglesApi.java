@@ -1,4 +1,4 @@
-package com.nixmash.jangles.business;
+package com.nixmash.jangles.service;
 
 import com.nixmash.jangles.core.JanglesConfiguration;
 import com.nixmash.jangles.core.JanglesGlobals;

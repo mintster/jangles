@@ -1,35 +1,60 @@
 package com.nixmash.jangles.db;
 
-import com.nixmash.jangles.containers.JanglesUser;
+import com.nixmash.jangles.dto.JanglesUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JanglesSqlDB extends JanglesSql {
 
-	// region janglesUsers
+    private static final Logger logger = LoggerFactory.getLogger(JanglesSqlDB.class);
 
-	@Override
-	public List<JanglesUser> getJanglesUsers() throws SQLException {
-		{
+    // region janglesUsers
 
-			List<JanglesUser> janglesUserList = new ArrayList<JanglesUser>();
+    @Override
+    public List<JanglesUser> getJanglesUsers() throws SQLException {
+        {
+            List<JanglesUser> janglesUserList = new ArrayList<JanglesUser>();
+            ResultSet rs = sqlQuery("SELECT * FROM jangles_users ORDER BY user_id");
+            JanglesUser janglesUser = null;
+            while (rs.next()) {
+                janglesUser = new JanglesUser();
+                populateJanglesUser(rs, janglesUser);
+                janglesUserList.add(janglesUser);
+            }
+            sqlClose();
+            return janglesUserList;
+        }
+    }
 
-			ResultSet rs = sqlQuery("SELECT * FROM jangles_users ORDER BY user_id");
+    @Override
+    public Long createJanglesUser(JanglesUser janglesUser) {
+        Long userId = -1L;
+        try (
+                CallableStatement cs = sqlCall("{call p_janglesusers_insert(?, ?, ?, ?, ?)}");
+        ) {
 
-			JanglesUser janglesUser = null;
-			while (rs.next()) {
-				janglesUser = new JanglesUser();
-				populateJanglesUserList(rs, janglesUser);
-				janglesUserList.add(janglesUser);
-			}
-			sqlClose();
+            cs.setString(1, janglesUser.getUserName());
+            cs.setString(2, janglesUser.getPassword());
+            cs.setString(3, janglesUser.getDisplayName());
+            cs.setBoolean(4, janglesUser.getIsActive());
+            cs.registerOutParameter(5, Types.BIGINT);
 
-			return janglesUserList;
-		}
-	}
+            cs.execute();
+            userId = cs.getLong(5);
+            cs.close();
 
-	// endregion
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return userId;
+    }
+    // endregion
 
 }

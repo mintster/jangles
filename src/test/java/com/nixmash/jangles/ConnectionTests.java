@@ -1,6 +1,6 @@
 package com.nixmash.jangles;
 
-import com.nixmash.jangles.containers.JanglesConnection;
+import com.nixmash.jangles.dto.JanglesConnection;
 import com.nixmash.jangles.core.JanglesConnections;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,9 +23,9 @@ public class ConnectionTests {
     }
 
     @Test
-    public void getH2Connection() {
-        JanglesConnection janglesConnection = JanglesConnections.getH2Connection();
-        Assert.assertEquals(janglesConnection.environment, "h2");
+    public void getTestConnection() {
+        JanglesConnection janglesConnection = JanglesConnections.getTestConnection();
+        Assert.assertTrue(janglesConnection.database.contains("test"));
     }
 
     // endregion

@@ -1,6 +1,6 @@
 
 
-package com.nixmash.jangles.containers;
+package com.nixmash.jangles.dto;
 
 import java.sql.Timestamp;
 
@@ -22,8 +22,7 @@ public class JanglesUser {
     public String password;
     public String displayName;
     public Timestamp dateCreated;
-    public Boolean isActive;
-
+    public Boolean isActive = true;
 
 // endregion
 

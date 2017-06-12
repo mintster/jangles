@@ -1,6 +1,6 @@
 package com.nixmash.jangles.core;
 
-import com.nixmash.jangles.containers.JanglesConnection;
+import com.nixmash.jangles.dto.JanglesConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,16 +39,12 @@ public class JanglesConnections {
                 (JanglesConfiguration.get().mysqlDbConnectionName);
 	}
 
-	public static JanglesConnection getH2Connection() {
+	public static JanglesConnection getTestConnection() {
 		return getConnection
-				(JanglesConfiguration.get().h2DbConnectionName);
+				(JanglesConfiguration.get().testDbConnectionName);
 	}
 
-	public static JanglesConnection getPgConnection() {
-		return getConnection(
-                JanglesConfiguration.get().pgDbConnectionName);
-	}
-	
+	@SuppressWarnings("ConstantConditions")
 	private static JanglesConnection getConnection(String name) {
 
 		JanglesConnections janglesConnections = null;
@@ -81,7 +77,7 @@ public class JanglesConnections {
 
 	public static void clearOutputConnectionCache()
 	{
-		clearConnectionCache(JanglesConfiguration.get().pgDbConnectionName);
+		clearConnectionCache(JanglesConfiguration.get().mysqlDbConnectionName);
 	}
 	
 	public static void clearInputConnectionCache()

@@ -1,4 +1,4 @@
-package com.nixmash.jangles.containers;
+package com.nixmash.jangles.dto;
 
 import javax.xml.bind.annotation.*;
 
@@ -69,9 +69,6 @@ public class JanglesConnection implements java.io.Serializable {
     }
 
     public String getUrl() {
-        if (this.environment.equals("h2"))
-            return this.urlbase;
-        else
             return this.urlbase + this.database;
     }
 
