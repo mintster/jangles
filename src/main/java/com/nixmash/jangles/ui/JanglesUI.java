@@ -36,7 +36,7 @@ public class JanglesUI {
         System.out.println();
 
         for (JanglesUser janglesUser : janglesUsers) {
-            System.out.println("User: " + janglesUser.displayName);
+            System.out.println("User: " + janglesUser.getDisplayName());
         }
     }
 

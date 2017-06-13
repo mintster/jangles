@@ -19,13 +19,13 @@ public class ConnectionTests {
     @Test
     public void getMySqlConnection() {
         JanglesConnection janglesConnection = JanglesConnections.getMySqlConnection();
-        Assert.assertEquals(janglesConnection.environment, "mysql");
+        Assert.assertEquals(janglesConnection.getEnvironment(), "mysql");
     }
 
     @Test
     public void getTestConnection() {
         JanglesConnection janglesConnection = JanglesConnections.getTestConnection();
-        Assert.assertTrue(janglesConnection.database.contains("test"));
+        Assert.assertTrue(janglesConnection.getDatabase().contains("test"));
     }
 
     // endregion

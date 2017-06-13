@@ -1,5 +1,3 @@
-
-
 package com.nixmash.jangles.dto;
 
 import java.sql.Timestamp;
@@ -17,20 +15,21 @@ public class JanglesUser {
 
     // region properties
 
-    public int userId;
-    public String userName;
-    public String password;
-    public String displayName;
-    public Timestamp dateCreated;
-    public Boolean isActive = true;
+    private int userId;
+    private String userName;
+    private String password;
+    private String displayName;
+    private Timestamp dateCreated;
+    private Boolean isActive = true;
 
 // endregion
 
-// region getters/setters
+    // region getters/setters
 
     public int getUserId() {
         return userId;
     }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -38,6 +37,7 @@ public class JanglesUser {
     public String getUserName() {
         return userName;
     }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -45,6 +45,7 @@ public class JanglesUser {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -52,6 +53,7 @@ public class JanglesUser {
     public String getDisplayName() {
         return displayName;
     }
+
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
@@ -59,6 +61,7 @@ public class JanglesUser {
     public Timestamp getDateCreated() {
         return dateCreated;
     }
+
     public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
@@ -66,6 +69,7 @@ public class JanglesUser {
     public Boolean getIsActive() {
         return isActive;
     }
+
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }

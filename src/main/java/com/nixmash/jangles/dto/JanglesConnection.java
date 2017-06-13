@@ -8,17 +8,20 @@ public class JanglesConnection implements java.io.Serializable {
 
     private static final long serialVersionUID = 1268527199886230105L;
 
-    public JanglesConnection() {
-    }
+    public JanglesConnection() {};
 
-    ;
+    // region Properties
 
-    public String name;
-    public String environment;
-    public String username;
-    public String password;
-    public String urlbase;
-    public String database;
+    private String name;
+    private String environment;
+    private String username;
+    private String password;
+    private String urlbase;
+    private String database;
+
+    // endregion
+
+    // region Getter Setters
 
     public String getName() {
         return name;
@@ -69,8 +72,10 @@ public class JanglesConnection implements java.io.Serializable {
     }
 
     public String getUrl() {
-            return this.urlbase + this.database;
+        return this.urlbase + this.database;
     }
+
+    // endregion
 
     @Override
     public String toString() {

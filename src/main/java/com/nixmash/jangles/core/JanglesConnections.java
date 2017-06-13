@@ -63,7 +63,7 @@ public class JanglesConnections {
 			}
 
 			currentConnection = janglesConnections.getConnections().stream()
-					.filter(s -> s.name.equalsIgnoreCase(name)).findFirst().get();
+					.filter(s -> s.getName().equalsIgnoreCase(name)).findFirst().get();
 
 			JanglesCache.getInstance().put(cacheKey, currentConnection);
 		}

@@ -56,7 +56,7 @@ public abstract class JanglesSql {
     private Connection sqlConnection() throws ClassNotFoundException, SQLException {
         Class.forName(MYSQL_CLASSNAME);
         return DriverManager.getConnection(janglesConnection.getUrl(),
-                janglesConnection.username, janglesConnection.password);
+                janglesConnection.getUsername(), janglesConnection.getPassword());
     }
 
     protected ResultSet sqlQuery(String query) {
