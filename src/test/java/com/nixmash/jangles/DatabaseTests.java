@@ -107,6 +107,10 @@ public class DatabaseTests   {
         users = janglesUsers.getJanglesUsers();
         Assertions.assertThat(users.size()).isGreaterThan(0);
 
+/*        for (JanglesUser user : users) {
+            System.out.println(user);
+        }*/
+
         List<JanglesUser> cachedUsers = (List<JanglesUser>) JanglesCache.getInstance().get(key);
         assertEquals(users, cachedUsers);
     }

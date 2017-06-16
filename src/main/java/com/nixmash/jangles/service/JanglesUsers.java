@@ -18,7 +18,7 @@ public class JanglesUsers {
     private final JanglesSql db;
 
     public JanglesUsers(JanglesProfile janglesProfile) {
-        this.db = JanglesSql.loadProvider(janglesProfile);
+        this.db = new JanglesSql(janglesProfile);
     }
 
     public List<JanglesUser> getJanglesUsers() {
@@ -49,12 +49,8 @@ public class JanglesUsers {
 
     public JanglesUser createJanglesUser(JanglesUser janglesUser) {
         Long userId = -1L;
-        try {
-            userId = db.createJanglesUser(janglesUser);
-            JanglesCache.getInstance().remove(janglesUsersCacheKey());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        userId = db.createJanglesUser(janglesUser);
+        JanglesCache.getInstance().remove(janglesUsersCacheKey());
         return getJanglesUser(userId);
     }
 

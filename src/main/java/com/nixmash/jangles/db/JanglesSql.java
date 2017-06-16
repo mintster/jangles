@@ -1,43 +1,36 @@
 package com.nixmash.jangles.db;
 
+import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.dto.JanglesConnection;
 import com.nixmash.jangles.dto.JanglesUser;
-import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.enums.JanglesProfile;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class JanglesSql {
+public class JanglesSql {
 
     // region Constants and Properties
 
-    private static final String MYSQL_PROVIDER = "com.nixmash.jangles.db.JanglesSqlDB";
     private static final String MYSQL_CLASSNAME = "com.mysql.jdbc.Driver";
 
-    private static JanglesSql provider;
-    private static JanglesConnection janglesConnection;
+    private JanglesConnection janglesConnection;
     public String dbUser;
 
     private Connection connection;
     private Statement statement;
     private CallableStatement callablestatement;
 
-    // endregion
-
-    // region LoadProvider by JanglesProfile
-
-    public static JanglesSql loadProvider(JanglesProfile janglesProfile) {
-        janglesConnection = getProfileConnection(janglesProfile);
-        try {
-            provider = (JanglesSql) Class.forName(MYSQL_PROVIDER).newInstance();
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return provider;
+    public JanglesSql(JanglesProfile janglesProfile) {
+        this.janglesConnection = getProfileConnection(janglesProfile);
     }
 
-    private static JanglesConnection getProfileConnection(JanglesProfile janglesProfile) {
+    // endregion
+
+    // region Datasource Connection based on JanglesProfile
+
+    private JanglesConnection getProfileConnection(JanglesProfile janglesProfile) {
         JanglesConnection janglesConnection = JanglesConnections.getMySqlConnection();
         switch (janglesProfile) {
             case TESTING:
@@ -100,16 +93,49 @@ public abstract class JanglesSql {
 
     // endregion
 
-    // region Abstract Methods
+    // region janglesUsers
 
-    public abstract List<JanglesUser> getJanglesUsers() throws SQLException;
-    public abstract Long createJanglesUser(JanglesUser janglesUser) throws SQLException;
+    public List<JanglesUser> getJanglesUsers() throws SQLException {
+        {
+            List<JanglesUser> janglesUserList = new ArrayList<JanglesUser>();
+            ResultSet rs = sqlQuery("SELECT * FROM jangles_users ORDER BY user_id");
+            JanglesUser janglesUser = null;
+            while (rs.next()) {
+                janglesUser = new JanglesUser();
+                populateJanglesUser(rs, janglesUser);
+                janglesUserList.add(janglesUser);
+            }
+            sqlClose();
+            return janglesUserList;
+        }
+    }
 
+    public Long createJanglesUser(JanglesUser janglesUser) {
+        Long userId = -1L;
+        try (
+                CallableStatement cs = sqlCall("{call p_janglesusers_insert(?, ?, ?, ?, ?)}");
+        ) {
+
+            cs.setString(1, janglesUser.getUserName());
+            cs.setString(2, janglesUser.getPassword());
+            cs.setString(3, janglesUser.getDisplayName());
+            cs.setBoolean(4, janglesUser.getIsActive());
+            cs.registerOutParameter(5, Types.BIGINT);
+
+            cs.execute();
+            userId = cs.getLong(5);
+            cs.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return userId;
+    }
     // endregion
 
     // region Populate List Objects from ResultSets
 
-    public static void populateJanglesUser(ResultSet rs, JanglesUser janglesUser) throws SQLException {
+    public void populateJanglesUser(ResultSet rs, JanglesUser janglesUser) throws SQLException {
         janglesUser.setUserId(rs.getInt("user_id"));
         janglesUser.setUserName(rs.getString("username"));
         janglesUser.setPassword(rs.getString("password"));

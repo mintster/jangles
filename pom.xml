@@ -28,6 +28,7 @@
         <logback-core.version>1.1.3</logback-core.version>
         <multiline.version>1.1.0</multiline.version>
         <ibatis.version>3.0</ibatis.version>
+        <guice.version>3.0</guice.version>
     </properties>
 
     <repositories>
