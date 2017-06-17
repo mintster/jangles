@@ -1,9 +1,7 @@
 package com.nixmash.jangles.db;
 
-import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.dto.JanglesConnection;
 import com.nixmash.jangles.dto.JanglesUser;
-import com.nixmash.jangles.enums.JanglesProfile;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,43 +11,23 @@ public class JanglesSql {
 
     // region Constants and Properties
 
-    private static final String MYSQL_CLASSNAME = "com.mysql.jdbc.Driver";
-
-    private JanglesConnection janglesConnection;
-    public String dbUser;
-
     private Connection connection;
     private Statement statement;
     private CallableStatement callablestatement;
+    private final IConnection iConnection;
 
-    public JanglesSql(JanglesProfile janglesProfile) {
-        this.janglesConnection = getProfileConnection(janglesProfile);
+    public JanglesSql(IConnection iConnection) {
+        this.iConnection = iConnection;
     }
 
     // endregion
 
-    // region Datasource Connection based on JanglesProfile
-
-    private JanglesConnection getProfileConnection(JanglesProfile janglesProfile) {
-        JanglesConnection janglesConnection = JanglesConnections.getMySqlConnection();
-        switch (janglesProfile) {
-            case TESTING:
-                janglesConnection = JanglesConnections.getTestConnection();
-                break;
-            case MYSQL:
-                break;
-        }
-        return janglesConnection;
-    }
-
-    // endregion
 
     // region MySQL Connection and Query Processes
 
     private Connection sqlConnection() throws ClassNotFoundException, SQLException {
-        Class.forName(MYSQL_CLASSNAME);
-        return DriverManager.getConnection(janglesConnection.getUrl(),
-                janglesConnection.getUsername(), janglesConnection.getPassword());
+        JanglesConnection cn = iConnection.get();
+        return DriverManager.getConnection(cn.getUrl(), cn.getUsername(), cn.getPassword());
     }
 
     protected ResultSet sqlQuery(String query) {

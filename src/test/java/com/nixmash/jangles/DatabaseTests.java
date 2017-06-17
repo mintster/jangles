@@ -5,7 +5,6 @@ import com.nixmash.jangles.core.JanglesConfiguration;
 import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.dto.JanglesConnection;
 import com.nixmash.jangles.dto.JanglesUser;
-import com.nixmash.jangles.enums.JanglesProfile;
 import com.nixmash.jangles.service.JanglesUsers;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.assertj.core.api.Assertions;
@@ -37,7 +36,7 @@ public class DatabaseTests   {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseTests.class);
 
-    private JanglesUsers janglesUsers = new JanglesUsers(JanglesProfile.TESTING);
+    private JanglesUsers janglesUsers = new JanglesUsers(new TestConnection());
     private String key = userListCacheKey();
     private  List<JanglesUser> users;
     private boolean isSetup = false;
@@ -52,6 +51,7 @@ public class DatabaseTests   {
 
     @BeforeClass
     public static void setup(){
+//        Injector injector = Guice.createInjector(new JanglesTestModule());
         try {
             configureTestDb("/populate.sql");
         } catch (FileNotFoundException | SQLException e) {
@@ -107,9 +107,9 @@ public class DatabaseTests   {
         users = janglesUsers.getJanglesUsers();
         Assertions.assertThat(users.size()).isGreaterThan(0);
 
-/*        for (JanglesUser user : users) {
+        for (JanglesUser user : users) {
             System.out.println(user);
-        }*/
+        }
 
         List<JanglesUser> cachedUsers = (List<JanglesUser>) JanglesCache.getInstance().get(key);
         assertEquals(users, cachedUsers);

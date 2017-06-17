@@ -1,10 +1,10 @@
 package com.nixmash.jangles.service;
 
-import com.nixmash.jangles.dto.JanglesUser;
 import com.nixmash.jangles.core.JanglesCache;
 import com.nixmash.jangles.core.JanglesConfiguration;
+import com.nixmash.jangles.db.IConnection;
 import com.nixmash.jangles.db.JanglesSql;
-import com.nixmash.jangles.enums.JanglesProfile;
+import com.nixmash.jangles.dto.JanglesUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +17,8 @@ public class JanglesUsers {
     private static final Logger logger = LoggerFactory.getLogger(JanglesUsers.class);
     private final JanglesSql db;
 
-    public JanglesUsers(JanglesProfile janglesProfile) {
-        this.db = new JanglesSql(janglesProfile);
+    public JanglesUsers(IConnection iConnection) {
+        this.db = new JanglesSql(iConnection);
     }
 
     public List<JanglesUser> getJanglesUsers() {

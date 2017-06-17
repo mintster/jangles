@@ -1,10 +1,10 @@
 package com.nixmash.jangles.ui;
 
+import com.nixmash.jangles.core.JanglesConnections;
+import com.nixmash.jangles.db.MySqlConnection;
+import com.nixmash.jangles.dto.JanglesUser;
 import com.nixmash.jangles.service.JanglesApi;
 import com.nixmash.jangles.service.JanglesUsers;
-import com.nixmash.jangles.dto.JanglesUser;
-import com.nixmash.jangles.core.JanglesConnections;
-import com.nixmash.jangles.enums.JanglesProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,8 +16,7 @@ import java.util.Properties;
 public class JanglesUI {
 
     private static final Logger logger = LoggerFactory.getLogger(JanglesUI.class);
-
-    private JanglesUsers janglesUsers = new JanglesUsers(JanglesProfile.MYSQL);
+    private JanglesUsers janglesUsers = new JanglesUsers(new MySqlConnection());
 
     public void init() {
         displayJanglesUsers();
