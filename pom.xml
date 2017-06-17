@@ -165,7 +165,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.nixmash.jangles.Jangles</mainClass>
+                            <mainClass>com.nixmash.jangles.Launcher</mainClass>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
                         </manifest>
                     </archive>
@@ -195,7 +195,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.nixmash.jangles.Jangles</mainClass>
+                            <mainClass>com.nixmash.jangles.Launcher</mainClass>
                         </manifest>
                     </archive>
                     <finalName>jangles</finalName>
