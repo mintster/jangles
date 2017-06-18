@@ -26,6 +26,7 @@ public class JanglesSql {
     // region MySQL Connection and Query Processes
 
     private Connection sqlConnection() throws ClassNotFoundException, SQLException {
+        JanglesConnection janglesConnection = new JanglesConnection();
         JanglesConnection cn = iConnection.get();
         return DriverManager.getConnection(cn.getUrl(), cn.getUsername(), cn.getPassword());
     }

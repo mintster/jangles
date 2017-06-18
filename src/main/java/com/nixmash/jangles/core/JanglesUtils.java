@@ -2,6 +2,9 @@ package com.nixmash.jangles.core;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class JanglesUtils {
 
 	public static String pluralize(String singular) {
@@ -16,6 +19,17 @@ public class JanglesUtils {
 
 	public static String lowerPluralize(String singular) {
 		return StringUtils.uncapitalize(pluralize(singular));
+	}
+
+	public static boolean isInTestingMode() {
+		StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+		List<StackTraceElement> list = Arrays.asList(stackTrace);
+		for (StackTraceElement element : list) {
+			if (element.getClassName().startsWith("org.junit.")) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

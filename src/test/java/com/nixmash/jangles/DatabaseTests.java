@@ -1,11 +1,13 @@
 package com.nixmash.jangles;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.nixmash.jangles.core.JanglesCache;
 import com.nixmash.jangles.core.JanglesConfiguration;
 import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.dto.JanglesConnection;
 import com.nixmash.jangles.dto.JanglesUser;
-import com.nixmash.jangles.service.JanglesUsers;
+import com.nixmash.jangles.service.JanglesUserServiceImpl;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.assertj.core.api.Assertions;
 import org.junit.AfterClass;
@@ -23,8 +25,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by daveburke on 6/11/17.
@@ -36,7 +40,6 @@ public class DatabaseTests   {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseTests.class);
 
-    private JanglesUsers janglesUsers = new JanglesUsers(new TestConnection());
     private String key = userListCacheKey();
     private  List<JanglesUser> users;
     private boolean isSetup = false;
@@ -45,14 +48,17 @@ public class DatabaseTests   {
         return String.format("JanglesUserList-%s", JanglesConfiguration.get().configFileId);
     }
 
+    private static JanglesUserServiceImpl janglesUserServiceImpl;
+
     // endregion
 
     // region @BeforeClass and @AfterClass
 
     @BeforeClass
     public static void setup(){
-//        Injector injector = Guice.createInjector(new JanglesTestModule());
         try {
+            Injector injector = Guice.createInjector(new JanglesTestModule());
+            janglesUserServiceImpl = injector.getInstance(JanglesUserServiceImpl.class);
             configureTestDb("/populate.sql");
         } catch (FileNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -89,14 +95,20 @@ public class DatabaseTests   {
 
     // endregion
 
-    // region JanglesUsers CRUD and Cache Tests
+    @Test
+    public void connectionTest() {
+        System.out.println(JanglesConfiguration.get().configFileId);
+    }
+
+    // region JanglesUserServiceImpl CRUD and Cache Tests
 
     @Test
     public void createJanglesUserTest() {
-        int before = janglesUsers.getJanglesUsers().size();
+        int before = janglesUserServiceImpl.getJanglesUsers().size();
         JanglesUser newUser = TestUtils.createJanglesUser("usertest");
-        janglesUsers.createJanglesUser(newUser);
-        int after = janglesUsers.getJanglesUsers().size();
+        JanglesUser janglesUser = janglesUserServiceImpl.createJanglesUser(newUser);
+        assertThat(janglesUser.getUserId(), greaterThan(0));
+        int after = janglesUserServiceImpl.getJanglesUsers().size();
         assertEquals(before + 1, after);
     }
 
@@ -104,7 +116,7 @@ public class DatabaseTests   {
     @SuppressWarnings("unchecked")
     public void cacheDbRetrievalTest() {
 
-        users = janglesUsers.getJanglesUsers();
+        users = janglesUserServiceImpl.getJanglesUsers();
         Assertions.assertThat(users.size()).isGreaterThan(0);
 
         for (JanglesUser user : users) {
@@ -119,7 +131,7 @@ public class DatabaseTests   {
     @SuppressWarnings("unchecked")
     public void clearCacheTest() {
 
-        users = janglesUsers.getJanglesUsers();
+        users = janglesUserServiceImpl.getJanglesUsers();
         Assertions.assertThat(users.size()).isGreaterThan(0);
 
         JanglesCache cache = JanglesCache.getInstance();

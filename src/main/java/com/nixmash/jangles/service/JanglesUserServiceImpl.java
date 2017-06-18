@@ -1,5 +1,6 @@
 package com.nixmash.jangles.service;
 
+import com.google.inject.Inject;
 import com.nixmash.jangles.core.JanglesCache;
 import com.nixmash.jangles.core.JanglesConfiguration;
 import com.nixmash.jangles.db.IConnection;
@@ -12,19 +13,22 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
-public class JanglesUsers {
+public class JanglesUserServiceImpl implements JanglesUserService {
 
-    private static final Logger logger = LoggerFactory.getLogger(JanglesUsers.class);
+    private static final Logger logger = LoggerFactory.getLogger(JanglesUserServiceImpl.class);
     private final JanglesSql db;
 
-    public JanglesUsers(IConnection iConnection) {
+    @Inject
+    public JanglesUserServiceImpl(IConnection iConnection) {
         this.db = new JanglesSql(iConnection);
     }
 
+    @Override
     public List<JanglesUser> getJanglesUsers() {
         return getJanglesUsers(true);
     }
 
+    @Override
     public List<JanglesUser> getJanglesUsers(boolean useCached) {
 
         String key = janglesUsersCacheKey();
@@ -43,10 +47,12 @@ public class JanglesUsers {
         return janglesUsers;
     }
 
+    @Override
     public JanglesUser getJanglesUser(Long userID) {
         return getJanglesUsers().get(userID.intValue() - 1);
     }
 
+    @Override
     public JanglesUser createJanglesUser(JanglesUser janglesUser) {
         Long userId = -1L;
         userId = db.createJanglesUser(janglesUser);

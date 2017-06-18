@@ -1,10 +1,11 @@
 package com.nixmash.jangles.ui;
 
+import com.google.inject.Inject;
 import com.nixmash.jangles.core.JanglesConnections;
-import com.nixmash.jangles.db.MySqlConnection;
+import com.nixmash.jangles.db.IConnection;
 import com.nixmash.jangles.dto.JanglesUser;
 import com.nixmash.jangles.service.JanglesApi;
-import com.nixmash.jangles.service.JanglesUsers;
+import com.nixmash.jangles.service.JanglesUserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,15 @@ import java.util.Properties;
 public class JanglesUI {
 
     private static final Logger logger = LoggerFactory.getLogger(JanglesUI.class);
-    private JanglesUsers janglesUsers = new JanglesUsers(new MySqlConnection());
+    private JanglesUserServiceImpl janglesUserServiceImpl;
+
+    private final IConnection iConnection;
+
+    @Inject
+    public JanglesUI(IConnection iConnection) {
+        this.iConnection = iConnection;
+       janglesUserServiceImpl = new JanglesUserServiceImpl(iConnection);
+    }
 
     public void init() {
         displayJanglesUsers();
@@ -25,10 +34,10 @@ public class JanglesUI {
 
     // region users
 
-    public void displayJanglesUsers() {
+    private void displayJanglesUsers() {
         logger.info("Displaying MySQL Users...");
         JanglesConnections.clearInputConnectionCache();
-        displayUsers(janglesUsers.getJanglesUsers());
+        displayUsers(janglesUserServiceImpl.getJanglesUsers());
     }
 
     private void displayUsers(List<JanglesUser> janglesUsers) {
@@ -40,7 +49,7 @@ public class JanglesUI {
     }
 
     public JanglesUser getJanglesUser(Long userId) {
-        return janglesUsers.getJanglesUser(userId);
+        return janglesUserServiceImpl.getJanglesUser(userId);
     }
 
     // endregion

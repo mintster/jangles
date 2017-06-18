@@ -43,7 +43,8 @@ public class JanglesConfiguration implements java.io.Serializable {
 		Properties properties = new Properties();
 
 		try {
-			properties.load(getClass().getResourceAsStream("/jangles.properties"));
+			String propertiesFile = !JanglesUtils.isInTestingMode() ? "jangles" : "test";
+			properties.load(getClass().getResourceAsStream(String.format("/%s.properties", propertiesFile)));
 		} catch (IOException e) {
 			logger.error(e.getMessage());
 		}
