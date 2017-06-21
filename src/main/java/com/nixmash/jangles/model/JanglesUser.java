@@ -1,4 +1,4 @@
-package com.nixmash.jangles.dto;
+package com.nixmash.jangles.model;
 
 import java.sql.Timestamp;
 

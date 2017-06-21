@@ -2,11 +2,9 @@ package com.nixmash.jangles;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.nixmash.jangles.core.JanglesCache;
-import com.nixmash.jangles.core.JanglesConfiguration;
-import com.nixmash.jangles.core.JanglesConnections;
-import com.nixmash.jangles.dto.JanglesConnection;
-import com.nixmash.jangles.dto.JanglesUser;
+import com.nixmash.jangles.core.*;
+import com.nixmash.jangles.model.JanglesConnection;
+import com.nixmash.jangles.model.JanglesUser;
 import com.nixmash.jangles.service.JanglesUserServiceImpl;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.assertj.core.api.Assertions;
@@ -26,9 +24,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  * Created by daveburke on 6/11/17.
@@ -97,7 +93,7 @@ public class DatabaseTests   {
 
     @Test
     public void connectionTest() {
-        System.out.println(JanglesConfiguration.get().configFileId);
+        assertTrue(JanglesConfiguration.get().configFileId.contains("test"));
     }
 
     // region JanglesUserServiceImpl CRUD and Cache Tests
@@ -119,9 +115,10 @@ public class DatabaseTests   {
         users = janglesUserServiceImpl.getJanglesUsers();
         Assertions.assertThat(users.size()).isGreaterThan(0);
 
-        for (JanglesUser user : users) {
+
+/*        for (JanglesUser user : users) {
             System.out.println(user);
-        }
+        }*/
 
         List<JanglesUser> cachedUsers = (List<JanglesUser>) JanglesCache.getInstance().get(key);
         assertEquals(users, cachedUsers);

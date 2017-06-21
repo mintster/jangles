@@ -1,6 +1,6 @@
 package com.nixmash.jangles.core;
 
-import com.nixmash.jangles.dto.JanglesConnection;
+import com.nixmash.jangles.model.JanglesConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

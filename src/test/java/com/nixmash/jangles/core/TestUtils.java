@@ -1,4 +1,4 @@
-package com.nixmash.jangles;
+package com.nixmash.jangles.core;
 
 import com.nixmash.jangles.model.JanglesUser;
 import org.apache.commons.lang3.StringUtils;

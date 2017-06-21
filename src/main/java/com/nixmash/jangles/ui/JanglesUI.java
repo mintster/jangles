@@ -2,10 +2,10 @@ package com.nixmash.jangles.ui;
 
 import com.google.inject.Inject;
 import com.nixmash.jangles.core.JanglesConnections;
-import com.nixmash.jangles.db.IConnection;
-import com.nixmash.jangles.dto.JanglesUser;
-import com.nixmash.jangles.service.JanglesApi;
-import com.nixmash.jangles.service.JanglesUserServiceImpl;
+import com.nixmash.jangles.db.connections.IConnection;
+import com.nixmash.jangles.model.JanglesUser;
+import com.nixmash.jangles.service.base.JanglesApiService;
+import com.nixmash.jangles.service.base.JanglesUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,27 +17,28 @@ import java.util.Properties;
 public class JanglesUI {
 
     private static final Logger logger = LoggerFactory.getLogger(JanglesUI.class);
-    private JanglesUserServiceImpl janglesUserServiceImpl;
-
+    private final JanglesUserService janglesUserService;
+    private final JanglesApiService janglesApiService;
     private final IConnection iConnection;
 
     @Inject
-    public JanglesUI(IConnection iConnection) {
+    public JanglesUI(IConnection iConnection, JanglesUserService janglesUserService, JanglesApiService janglesApiService) {
         this.iConnection = iConnection;
-       janglesUserServiceImpl = new JanglesUserServiceImpl(iConnection);
+        this.janglesUserService = janglesUserService;
+        this.janglesApiService = janglesApiService;
     }
 
     public void init() {
         displayJanglesUsers();
-        apiSayHello("bob");
+        apiSayHello();
     }
 
     // region users
 
-    private void displayJanglesUsers() {
+    public void displayJanglesUsers() {
         logger.info("Displaying MySQL Users...");
         JanglesConnections.clearInputConnectionCache();
-        displayUsers(janglesUserServiceImpl.getJanglesUsers());
+        displayUsers(janglesUserService.getJanglesUsers());
     }
 
     private void displayUsers(List<JanglesUser> janglesUsers) {
@@ -49,16 +50,7 @@ public class JanglesUI {
     }
 
     public JanglesUser getJanglesUser(Long userId) {
-        return janglesUserServiceImpl.getJanglesUser(userId);
-    }
-
-    // endregion
-
-
-    // region plugins
-
-    public String sayHello(String hello) {
-        return "JanglesUI says " + hello + "!";
+        return janglesUserService.getJanglesUser(userId);
     }
 
     // endregion
@@ -84,9 +76,8 @@ public class JanglesUI {
 
     // region api
 
-    public void apiSayHello(String _user) {
-        JanglesApi _janglesApi = new JanglesApi();
-        System.out.println("\n\n" + _janglesApi.showConfiguration());
+    public void apiSayHello() {
+        System.out.println("\n\n" +  janglesApiService.sayHello());
     }
 
     // endregion

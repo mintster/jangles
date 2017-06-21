@@ -1,7 +1,7 @@
-package com.nixmash.jangles.db;
+package com.nixmash.jangles.db.connections;
 
 import com.nixmash.jangles.core.JanglesConnections;
-import com.nixmash.jangles.dto.JanglesConnection;
+import com.nixmash.jangles.model.JanglesConnection;
 
 /**
  * Created by daveburke on 6/17/17.

@@ -1,6 +1,6 @@
 package com.nixmash.jangles;
 
-import com.nixmash.jangles.dto.JanglesConnection;
+import com.nixmash.jangles.model.JanglesConnection;
 import com.nixmash.jangles.core.JanglesConnections;
 import org.junit.Assert;
 import org.junit.Test;

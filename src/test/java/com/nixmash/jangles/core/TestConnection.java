@@ -1,6 +1,5 @@
-package com.nixmash.jangles;
+package com.nixmash.jangles.core;
 
-import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.db.connections.IConnection;
 import com.nixmash.jangles.model.JanglesConnection;
 
