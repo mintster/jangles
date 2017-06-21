@@ -1,12 +1,16 @@
-Java Jangles
+Jangles
 ============
 
 Jangles is a very lean Java application with basic features like caching, logging, dual Development/Testing MySQL JDBC configuration, global properties and more. It is intended to be used as a codebase for Java Applications.
 
-###  Jangles Posts on NixMash
-
-Several posts at <http://nixmash.com> covered code in Java Jangles. Here is a partial list:
-
+ ## NixMash Posts by Branch
+ 
+  ### v2.0.0-Release-Two (in progress)
+  
+  * *Coming...*
+  
+ ### v1.0.0-Release-One
+ 
 * [Creating a Janglesweb WAR using Ant build files referencing Jangles Core and its reference library JARs](http://nixmash.com/java/referencing-project-libraries-in-wars-with-ant/)
 * [Janglesweb JAX-WS Web Client Configuration](http://nixmash.com/java/jangles-jax-ws-web-client-project-online/)
 * [Janglesweb JAX-WS Web Service Configuration](http://nixmash.com/java/jangles-jax-ws-web-service-project-now-on-github/)
