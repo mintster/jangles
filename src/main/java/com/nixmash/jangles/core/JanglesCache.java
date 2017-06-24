@@ -17,7 +17,8 @@ public final class JanglesCache {
     private static JanglesCache instance;
     private static JCS janglesCache;
 
-    private JanglesCache() {
+
+    public JanglesCache() {
         try {
         	janglesCache = JCS.getInstance("default");
 
@@ -26,7 +27,7 @@ public final class JanglesCache {
         }
 
     }
-
+/*
     public static JanglesCache getInstance() {
         synchronized (JanglesCache.class) {
             if (instance == null) {
@@ -35,7 +36,7 @@ public final class JanglesCache {
         }
 
         return instance;
-    }
+    }*/
 
     public Object get(Serializable key) {
         return janglesCache.get(key);

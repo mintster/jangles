@@ -1,8 +1,25 @@
 package com.nixmash.jangles.model;
 
+import com.fasterxml.jackson.annotation.*;
+import org.glassfish.jersey.linking.Binding;
+import org.glassfish.jersey.linking.InjectLink;
+
+import javax.ws.rs.core.Link;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
+import java.net.URI;
 import java.sql.Timestamp;
 
-public class JanglesUser {
+import static org.glassfish.jersey.linking.InjectLink.Style.ABSOLUTE;
+
+@XmlRootElement()
+@JsonPropertyOrder({"userId", "userName", "displayName", "dateCreated", "isActive", "link", "users"})
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class JanglesUser implements Serializable {
+
+    // region Constructors
 
     public JanglesUser() {
     }
@@ -13,16 +30,36 @@ public class JanglesUser {
         this.displayName = displayName;
     }
 
+    // endregion
+
     // region properties
+
+    @InjectLink(value = "/users", style = ABSOLUTE, condition = "${instance.showUsersLink}", rel="parent")
+    @JsonProperty(value = "users")
+    @XmlJavaTypeAdapter(Link.JaxbAdapter.class)
+    private Link usersUri;
+
+    @InjectLink(value = "/users/{userId}", style = ABSOLUTE, bindings = {
+            @Binding(name = "id", value = "${resource.userId}")})
+    @XmlElement(name = "link")
+    private URI userUri;
 
     private int userId;
     private String userName;
-    private String password;
     private String displayName;
+
+    @JsonIgnore
+    private String password;
+
+    @JsonFormat
+            (shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy hh:mm:ss")
     private Timestamp dateCreated;
     private Boolean isActive = true;
 
-// endregion
+    @JsonIgnore
+    private Boolean showUsersLink = false;
+
+    // endregion
 
     // region getters/setters
 
@@ -74,8 +111,31 @@ public class JanglesUser {
         this.isActive = isActive;
     }
 
+    public Link getUsersUri() {
+        return usersUri;
+    }
 
-// endregion
+    public void setUsersUri(Link usersUri) {
+        this.usersUri = usersUri;
+    }
+
+    public URI getUserUri() {
+        return userUri;
+    }
+
+    public void setUserUri(URI userUri) {
+        this.userUri = userUri;
+    }
+
+    public Boolean getShowUsersLink() {
+        return showUsersLink;
+    }
+
+    public void setShowUsersLink(Boolean showUsersLink) {
+        this.showUsersLink = showUsersLink;
+    }
+
+    // endregion
 
     @Override
     public String toString() {
@@ -88,6 +148,7 @@ public class JanglesUser {
                 ", isActive=" + isActive +
                 '}';
     }
+
 }
 
 

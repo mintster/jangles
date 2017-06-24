@@ -1,20 +1,20 @@
-package com.nixmash.jangles.service;
+package com.nixmash.jangles.guice;
 
 import com.google.inject.Inject;
 import com.nixmash.jangles.core.JanglesConfiguration;
 import com.nixmash.jangles.core.JanglesGlobals;
+import com.nixmash.jangles.service.JanglesApiService;
 
 /**
  * Created by daveburke on 6/19/17.
  */
-public class JanglesApiServiceImpl implements JanglesApiService {
-
+public class TestApiServiceImpl implements JanglesApiService{
 
     JanglesGlobals janglesGlobals;
     JanglesConfiguration janglesConfiguration;
 
     @Inject
-    public JanglesApiServiceImpl(JanglesGlobals janglesGlobals, JanglesConfiguration janglesConfiguration) {
+    public TestApiServiceImpl(JanglesGlobals janglesGlobals, JanglesConfiguration janglesConfiguration) {
         this.janglesGlobals = janglesGlobals;
         this.janglesConfiguration = janglesConfiguration;
     }
@@ -31,6 +31,6 @@ public class JanglesApiServiceImpl implements JanglesApiService {
 
     @Override
     public String sayHello() {
-        return "Hello from JanglesAPIServiceImpl";
+        return "Hello from TestAPIServiceImpl";
     }
 }

@@ -1,4 +1,4 @@
-package com.nixmash.jangles.db.connections;
+package com.nixmash.jangles.db;
 
 import com.nixmash.jangles.model.JanglesConnection;
 

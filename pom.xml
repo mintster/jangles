@@ -29,6 +29,7 @@
         <multiline.version>1.1.0</multiline.version>
         <ibatis.version>3.0</ibatis.version>
         <guice.version>4.1.0</guice.version>
+        <jackson-annotations.version>2.8.9</jackson-annotations.version>
     </properties>
 
     <repositories>
@@ -46,6 +47,21 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-declarative-linking</artifactId>
+            <version>2.25.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>2.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>2.2.6</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -110,6 +126,11 @@
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson-annotations.version}</version>
         </dependency>
     </dependencies>
 

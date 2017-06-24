@@ -1,7 +1,6 @@
-package com.nixmash.jangles.service.base;
+package com.nixmash.jangles.service;
 
 import com.google.inject.ImplementedBy;
-import com.nixmash.jangles.service.JanglesApiServiceImpl;
 
 @ImplementedBy(JanglesApiServiceImpl.class)
 public interface JanglesApiService {

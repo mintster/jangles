@@ -7,7 +7,7 @@
     <!-- To enable JMX Management -->
     <jmxConfigurator/>
 
-    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%15.15t]  %-40.40logger{39} : %m%n}"/>
+    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%3p} ${PID:- } --- [%10.10t]  %-30.30logger{39} : %m%n}"/>
 
     <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
 
@@ -19,7 +19,7 @@
     </appender>
 
     <logger name="com.nixmash.jangles" level="info"/>
-    <logger name="com.nixmash.rest.service" level="info"/>
+    <logger name="com.nixmash.userservice.service" level="info"/>
     <logger name="org.apache.jcs.engine" level="off"/>
 
     <root level="off">

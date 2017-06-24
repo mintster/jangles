@@ -3,11 +3,13 @@ package com.nixmash.jangles;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import com.nixmash.jangles.core.JanglesTestModule;
-import com.nixmash.jangles.core.TestApiServiceImpl;
-import com.nixmash.jangles.core.TestConnection;
-import com.nixmash.jangles.db.connections.IConnection;
-import com.nixmash.jangles.service.base.JanglesApiService;
+import com.nixmash.jangles.core.JanglesConfiguration;
+import com.nixmash.jangles.db.IConnection;
+import com.nixmash.jangles.guice.JanglesTestModule;
+import com.nixmash.jangles.guice.TestApiServiceImpl;
+import com.nixmash.jangles.guice.TestConnection;
+import com.nixmash.jangles.service.JanglesApiService;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +31,9 @@ public class GuiceTests  {
     @Inject
     private IConnection iConnection;
 
+    @Inject
+    private JanglesConfiguration janglesConfiguration;
+
     @Before
     public void setup() {
         Injector injector = Guice.createInjector(new JanglesTestModule());
@@ -43,6 +48,12 @@ public class GuiceTests  {
     @Test
     public void connectionInjectionTest() {
         assertThat(iConnection, is(instanceOf(TestConnection.class)));
+    }
+
+    @Test
+    public void configurationTest() {
+        String globalPropertiesFile = janglesConfiguration.globalPropertiesFile;
+        Assertions.assertThat(globalPropertiesFile.endsWith("global.properties"));
     }
 
 }

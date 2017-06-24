@@ -1,5 +1,7 @@
 package com.nixmash.jangles.core;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,57 +10,48 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+
+@Singleton
 public class JanglesGlobals implements java.io.Serializable {
 
-	private static final long serialVersionUID = -5262833103399133397L;
-
-	private static final Logger logger = LoggerFactory.getLogger(JanglesGlobals.class);
-
-	public String applicationId;
-	public String apiNoSearchResults;
-	public String apiBadKeyTitle;
-	public String apiKey;
-	
-	public static JanglesGlobals get() {
-
-		JanglesGlobals globals = (JanglesGlobals) JanglesCache.getInstance().get("JanglesGlobals");
-		if (globals == null) {
-			globals = new JanglesGlobals();
-			JanglesCache.getInstance().put("JanglesGlobals", globals);
-		}
-		return globals;
-	}
-
-	public JanglesGlobals() {
-		
-		Properties properties = new Properties();
-		InputStream input = null;
-	 
-		try {
-	 
-			input = new FileInputStream(JanglesConfiguration.get().globalPropertiesFile);
-			properties.load(input);
-			this.applicationId = properties.getProperty("applicationid");
-			
-			this.apiNoSearchResults = properties.getProperty("api.no.search.results");
-			this.apiBadKeyTitle = properties.getProperty("api.bad.key.title");
-			this.apiKey= properties.getProperty("api.key");
-			
-
-		} catch (IOException ex) {
-			logger.error(ex.getMessage());
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-	}
+    private static final long serialVersionUID = -5262833103399133397L;
+    private static final Logger logger = LoggerFactory.getLogger(JanglesGlobals.class);
+    public static final String GLOBALS_CACHE = "JanglesGlobals";
 
 
+    public String cloudApplicationId;
+    public String apiKeyErrorMessage;
+    public String apiKey;
 
+    private JanglesConfiguration janglesConfiguration;
+
+    @Inject
+    public JanglesGlobals(JanglesConfiguration janglesConfiguration) {
+        this.janglesConfiguration = janglesConfiguration;
+
+        Properties properties = new Properties();
+        InputStream input = null;
+
+        try {
+
+            input = new FileInputStream(janglesConfiguration.globalPropertiesFile);
+            properties.load(input);
+            this.cloudApplicationId = properties.getProperty("cloudApplicationId");
+            this.apiKeyErrorMessage = properties.getProperty("api.key.error.message");
+            this.apiKey = properties.getProperty("api.key");
+
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
+
+

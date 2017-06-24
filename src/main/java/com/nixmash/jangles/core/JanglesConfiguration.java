@@ -1,5 +1,6 @@
 package com.nixmash.jangles.core;
 
+import com.nixmash.jangles.utils.JanglesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,13 +9,24 @@ import java.util.Properties;
 
 public class JanglesConfiguration implements java.io.Serializable {
 
+
+/*	// region Constructor
+
+	JanglesCache janglesCache;
+
+	@Inject
+	public JanglesConfiguration(JanglesCache janglesCache) {
+		this.janglesCache = janglesCache;
+	}
+
+	// endregion*/
+
 	// region properties
 
 	private static final Logger logger = LoggerFactory.getLogger(JanglesConfiguration.class);
-
 	private static final long serialVersionUID = -720348471534321068L;
 
-	public String configFileId;
+	public String applicationId;
 	public String mysqlDbConnectionName;
 	public String testDbConnectionName;
 	public String connectionXmlPath;
@@ -22,23 +34,7 @@ public class JanglesConfiguration implements java.io.Serializable {
 
     // endregion
 
-	// region get()
-
-	public static JanglesConfiguration get() {
-
-		JanglesConfiguration config = (JanglesConfiguration) JanglesCache.getInstance().get("JanglesConfiguration");
-		if (config == null) {
-			config = new JanglesConfiguration();
-			JanglesCache.getInstance().put("JanglesConfiguration", config);
-		}
-		return config;
-	}
-
 	public JanglesConfiguration() {
-
-		String rootDirectory = System.getProperty("catalina.base");
-		if (rootDirectory == null)
-			rootDirectory = System.getProperty("user.dir");
 
 		Properties properties = new Properties();
 
@@ -49,11 +45,12 @@ public class JanglesConfiguration implements java.io.Serializable {
 			logger.error(e.getMessage());
 		}
 
-		this.configFileId = properties.getProperty("configfileid");
+		String user_home = System.getProperty("user.home");
+		this.applicationId = properties.getProperty("applicationId");
 		this.mysqlDbConnectionName = properties.getProperty("mysql.db.connection");
 		this.testDbConnectionName = properties.getProperty("testing.db.connection");
-		this.connectionXmlPath = properties.getProperty("connection.xml.path");
-		this.globalPropertiesFile = properties.getProperty("global.properties.file");
+		this.connectionXmlPath = user_home + properties.getProperty("connection.xml.path");
+		this.globalPropertiesFile = user_home + properties.getProperty("global.properties.file");
 
 	}
 

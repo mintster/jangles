@@ -1,11 +1,8 @@
-package com.nixmash.jangles.db.base;
+package com.nixmash.jangles.db;
 
-import com.nixmash.jangles.db.connections.IConnection;
 import com.nixmash.jangles.model.JanglesConnection;
-import com.nixmash.jangles.model.JanglesUser;
 
 import java.sql.*;
-import java.util.List;
 
 /**
  * Created by daveburke on 6/20/17.
@@ -78,12 +75,5 @@ public abstract class JanglesSql {
     // endregion
 
 
-    // region Users
-
-    public abstract JanglesUser getJanglesUser(Long userId) throws SQLException;
-    public abstract List<JanglesUser> getJanglesUsers() throws SQLException;
-    public abstract Long createJanglesUser(JanglesUser janglesUser);
-
-    // endregion
 
 }

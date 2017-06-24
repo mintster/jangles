@@ -1,5 +1,6 @@
-package com.nixmash.jangles.db.connections;
+package com.nixmash.jangles.db;
 
+import com.google.inject.Inject;
 import com.nixmash.jangles.core.JanglesConnections;
 import com.nixmash.jangles.model.JanglesConnection;
 
@@ -8,8 +9,11 @@ import com.nixmash.jangles.model.JanglesConnection;
  */
 public class MySqlConnection implements IConnection {
 
+    @Inject
+    JanglesConnections janglesConnections;
+
     @Override
     public JanglesConnection get() {
-        return JanglesConnections.getMySqlConnection();
+        return janglesConnections.getMySqlConnection();
     }
 }
