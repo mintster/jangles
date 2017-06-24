@@ -1,6 +1,7 @@
 package com.nixmash.jangles.core;
 
 
+import com.google.inject.Singleton;
 import org.apache.jcs.JCS;
 import org.apache.jcs.access.exception.CacheException;
 import org.apache.jcs.engine.ElementAttributes;
@@ -9,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
-
+@Singleton
 public final class JanglesCache {
 
     private static final Logger logger = LoggerFactory.getLogger(JanglesCache.class);

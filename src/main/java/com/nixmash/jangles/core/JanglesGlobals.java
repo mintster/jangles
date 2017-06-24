@@ -36,7 +36,7 @@ public class JanglesGlobals implements java.io.Serializable {
 
             input = new FileInputStream(janglesConfiguration.globalPropertiesFile);
             properties.load(input);
-            this.cloudApplicationId = properties.getProperty("cloudApplicationId");
+            this.cloudApplicationId = properties.getProperty("cloud.application.id");
             this.apiKeyErrorMessage = properties.getProperty("api.key.error.message");
             this.apiKey = properties.getProperty("api.key");
 

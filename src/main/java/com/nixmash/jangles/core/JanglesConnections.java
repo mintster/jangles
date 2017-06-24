@@ -1,6 +1,7 @@
 package com.nixmash.jangles.core;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.nixmash.jangles.model.JanglesConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.util.List;
 
+@Singleton
 @XmlRootElement(name = "connections")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class JanglesConnections {

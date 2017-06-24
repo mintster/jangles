@@ -1,5 +1,6 @@
 package com.nixmash.jangles.core;
 
+import com.google.inject.Singleton;
 import com.nixmash.jangles.utils.JanglesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,19 +8,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Properties;
 
+@Singleton
 public class JanglesConfiguration implements java.io.Serializable {
 
-
-/*	// region Constructor
-
-	JanglesCache janglesCache;
-
-	@Inject
-	public JanglesConfiguration(JanglesCache janglesCache) {
-		this.janglesCache = janglesCache;
-	}
-
-	// endregion*/
 
 	// region properties
 
@@ -46,11 +37,11 @@ public class JanglesConfiguration implements java.io.Serializable {
 		}
 
 		String user_home = System.getProperty("user.home");
-		this.applicationId = properties.getProperty("applicationId");
+		this.applicationId = properties.getProperty("application.id");
 		this.mysqlDbConnectionName = properties.getProperty("mysql.db.connection");
 		this.testDbConnectionName = properties.getProperty("testing.db.connection");
 		this.connectionXmlPath = user_home + properties.getProperty("connection.xml.path");
-		this.globalPropertiesFile = user_home + properties.getProperty("global.properties.file");
+		this.globalPropertiesFile = user_home + properties.getProperty("application.global.properties.file");
 
 	}
 
