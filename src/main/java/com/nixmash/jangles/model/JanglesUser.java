@@ -39,12 +39,17 @@ public class JanglesUser implements Serializable {
     @XmlJavaTypeAdapter(Link.JaxbAdapter.class)
     private Link usersUri;
 
+    @InjectLink(value = "/", style = ABSOLUTE, condition = "${instance.showUsersLink}", rel="home")
+    @JsonProperty(value = "home")
+    @XmlJavaTypeAdapter(Link.JaxbAdapter.class)
+    private Link homeUri;
+
     @InjectLink(value = "/users/{userId}", style = ABSOLUTE, bindings = {
             @Binding(name = "id", value = "${resource.userId}")})
     @XmlElement(name = "link")
     private URI userUri;
 
-    private int userId;
+    private Long userId;
     private String userName;
     private String displayName;
 
@@ -63,11 +68,20 @@ public class JanglesUser implements Serializable {
 
     // region getters/setters
 
-    public int getUserId() {
+
+    public Link getHomeUri() {
+        return homeUri;
+    }
+
+    public void setHomeUri(Link homeUri) {
+        this.homeUri = homeUri;
+    }
+
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
