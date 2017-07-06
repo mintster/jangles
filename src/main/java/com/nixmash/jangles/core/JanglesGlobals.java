@@ -1,6 +1,5 @@
 package com.nixmash.jangles.core;
 
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,16 +17,14 @@ public class JanglesGlobals implements java.io.Serializable {
     private static final Logger logger = LoggerFactory.getLogger(JanglesGlobals.class);
     public static final String GLOBALS_CACHE = "JanglesGlobals";
 
-
     public String cloudApplicationId;
     public String apiKeyErrorMessage;
     public String apiKey;
+    public String userServiceUrl;
 
-    private JanglesConfiguration janglesConfiguration;
 
-    @Inject
-    public JanglesGlobals(JanglesConfiguration janglesConfiguration) {
-        this.janglesConfiguration = janglesConfiguration;
+    public JanglesGlobals() {
+        JanglesConfiguration janglesConfiguration = new JanglesConfiguration();
 
         Properties properties = new Properties();
         InputStream input = null;
@@ -36,9 +33,10 @@ public class JanglesGlobals implements java.io.Serializable {
 
             input = new FileInputStream(janglesConfiguration.globalPropertiesFile);
             properties.load(input);
-            this.cloudApplicationId = properties.getProperty("cloud.application.id");
+            this.cloudApplicationId = properties.getProperty("application.cloud.id");
             this.apiKeyErrorMessage = properties.getProperty("api.key.error.message");
             this.apiKey = properties.getProperty("api.key");
+            this.userServiceUrl = properties.getProperty("userservice.url");
 
         } catch (IOException ex) {
             logger.error(ex.getMessage());

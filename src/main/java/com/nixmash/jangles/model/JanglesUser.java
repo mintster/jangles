@@ -5,7 +5,6 @@ import org.glassfish.jersey.linking.Binding;
 import org.glassfish.jersey.linking.InjectLink;
 
 import javax.ws.rs.core.Link;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
@@ -18,6 +17,8 @@ import static org.glassfish.jersey.linking.InjectLink.Style.ABSOLUTE;
 @JsonPropertyOrder({"userId", "userName", "displayName", "dateCreated", "isActive", "link", "users"})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class JanglesUser implements Serializable {
+
+    private static final long serialVersionUID = 6883971373572420433L;
 
     // region Constructors
 
@@ -42,12 +43,12 @@ public class JanglesUser implements Serializable {
     @InjectLink(value = "/", style = ABSOLUTE, condition = "${instance.showUsersLink}", rel="home")
     @JsonProperty(value = "home")
     @XmlJavaTypeAdapter(Link.JaxbAdapter.class)
-    private Link homeUri;
+    private Link home;
 
     @InjectLink(value = "/users/{userId}", style = ABSOLUTE, bindings = {
             @Binding(name = "id", value = "${resource.userId}")})
-    @XmlElement(name = "link")
-    private URI userUri;
+    @JsonProperty(value = "link")
+    private URI link;
 
     private Long userId;
     private String userName;
@@ -69,12 +70,12 @@ public class JanglesUser implements Serializable {
     // region getters/setters
 
 
-    public Link getHomeUri() {
-        return homeUri;
+    public Link getHome() {
+        return home;
     }
 
-    public void setHomeUri(Link homeUri) {
-        this.homeUri = homeUri;
+    public void setHome(Link home) {
+        this.home = home;
     }
 
     public Long getUserId() {
@@ -133,12 +134,12 @@ public class JanglesUser implements Serializable {
         this.usersUri = usersUri;
     }
 
-    public URI getUserUri() {
-        return userUri;
+    public URI getLink() {
+        return link;
     }
 
-    public void setUserUri(URI userUri) {
-        this.userUri = userUri;
+    public void setLink(URI link) {
+        this.link = link;
     }
 
     public Boolean getShowUsersLink() {

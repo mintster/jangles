@@ -6,9 +6,7 @@ import com.nixmash.jangles.service.JanglesApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Enumeration;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class JanglesUI {
 
@@ -23,14 +21,38 @@ public class JanglesUI {
     }
 
     public void init() {
-        logger.info(janglesApiService.showConfiguration());
-        logger.info(janglesApiService.sayHello());
+//        logger.info(janglesApiService.showConfiguration());
+//        logger.info(janglesApiService.sayHello());
+        showMessages();
     }
 
     // region users
 
 
     // region properties
+
+    public void showMessages() {
+        String language;
+        String country;
+
+/*        if (args.length != 2) {
+            language = new String("en");
+            country = new String("US");
+        } else {
+            language = new String(args[0]);
+            country = new String(args[1]);
+        }*/
+
+        Locale currentLocale;
+        ResourceBundle messages;
+
+        currentLocale = new Locale("en", "US");
+
+        messages = ResourceBundle.getBundle("messages", currentLocale);
+        System.out.println(messages.getString("greetings"));
+        System.out.println(messages.getString("inquiry"));
+        System.out.println(messages.getString("farewell"));
+    }
 
     public void showAllProperties() {
         Map<String, String> env = System.getenv();

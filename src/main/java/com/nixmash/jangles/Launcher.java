@@ -4,13 +4,12 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.nixmash.jangles.core.JanglesModule;
 import com.nixmash.jangles.ui.JanglesUI;
-import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
-public class Launcher extends ResourceConfig {
+public class Launcher  {
 
 	private static final Logger logger = LoggerFactory.getLogger(Launcher.class);
 

@@ -22,6 +22,7 @@ public class JanglesConfiguration implements java.io.Serializable {
 	public String testDbConnectionName;
 	public String connectionXmlPath;
 	public String globalPropertiesFile;
+	public String currentLocale;
 
     // endregion
 
@@ -42,9 +43,9 @@ public class JanglesConfiguration implements java.io.Serializable {
 		this.testDbConnectionName = properties.getProperty("testing.db.connection");
 		this.connectionXmlPath = user_home + properties.getProperty("connection.xml.path");
 		this.globalPropertiesFile = user_home + properties.getProperty("application.global.properties.file");
+		this.currentLocale = properties.getProperty("application.currentLocale");
 
 	}
 
 	// endregion
-
 }
