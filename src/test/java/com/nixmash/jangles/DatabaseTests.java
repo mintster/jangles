@@ -1,12 +1,14 @@
 package com.nixmash.jangles;
 
+import com.google.inject.Inject;
+import com.nixmash.jangles.core.JanglesConfiguration;
+import com.nixmash.jangles.guice.GuiceJUnit4Runner;
 import com.nixmash.jangles.model.JanglesUser;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +21,7 @@ import static com.nixmash.jangles.utils.JanglesUtils.configureTestDb;
 /**
  * Created by daveburke on 6/11/17.
  */
-@RunWith(JUnit4.class)
+@RunWith(GuiceJUnit4Runner.class)
 public class DatabaseTests   {
 
     // region Properties and Local Variables
@@ -30,6 +32,9 @@ public class DatabaseTests   {
     private boolean isSetup = false;
 
     // endregion
+
+    @Inject
+    private JanglesConfiguration janglesConfiguration;
 
     // region @BeforeClass and @AfterClass
 
@@ -55,7 +60,10 @@ public class DatabaseTests   {
 
 
     @Test
-    public void tempTest() {
-        Assert.assertTrue(1 == 1);
+    public void testConnectionNames() {
+        Assert.assertNotEquals(
+                janglesConfiguration.testDbConnectionName,
+                janglesConfiguration.mysqlDbConnectionName);
     }
+
 }

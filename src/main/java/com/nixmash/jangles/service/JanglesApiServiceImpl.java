@@ -31,6 +31,6 @@ public class JanglesApiServiceImpl implements JanglesApiService {
 
     @Override
     public String sayHello() {
-        return "Hello from JanglesAPIServiceImpl";
+        return "Hello from Jangles API Service Implementation";
     }
 }

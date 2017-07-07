@@ -21,9 +21,9 @@ public class JanglesUI {
     }
 
     public void init() {
-//        logger.info(janglesApiService.showConfiguration());
-//        logger.info(janglesApiService.sayHello());
-        showMessages();
+        logger.info(janglesApiService.showConfiguration());
+        logger.info(janglesApiService.sayHello());
+//        showMessages();
     }
 
     // region users
@@ -34,14 +34,6 @@ public class JanglesUI {
     public void showMessages() {
         String language;
         String country;
-
-/*        if (args.length != 2) {
-            language = new String("en");
-            country = new String("US");
-        } else {
-            language = new String(args[0]);
-            country = new String(args[1]);
-        }*/
 
         Locale currentLocale;
         ResourceBundle messages;

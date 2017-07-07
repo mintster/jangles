@@ -1,8 +1,14 @@
 package com.nixmash.jangles.utils;
 
+import com.nixmash.jangles.core.JanglesConfiguration;
+import com.nixmash.jangles.core.JanglesConnections;
+import com.nixmash.jangles.model.JanglesConnection;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.jdbc.ScriptRunner;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -49,10 +55,10 @@ public class JanglesUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		String url = properties.getProperty("testdb.url");
-		String dbuser = properties.getProperty("testdb.user");
-		String dbpassword = properties.getProperty("testdb.password");
+		JanglesConnection janglesConnection = getTestConnection();
+		String url = janglesConnection.getUrl();
+		String dbuser = janglesConnection.getUsername();
+		String dbpassword = janglesConnection.getPassword();
 		Connection conn = DriverManager.getConnection(url,dbuser, dbpassword);
 		Statement st = conn.createStatement();
 		File script = new File(classLoader.getResource(sql).getFile());
@@ -63,4 +69,26 @@ public class JanglesUtils {
 
 	}
 
+	@SuppressWarnings({"Duplicates", "ConstantConditions"})
+	private static JanglesConnection getTestConnection() {
+		JanglesConfiguration janglesConfiguration = new JanglesConfiguration();
+		JanglesConnections janglesConnections = null;
+
+			try {
+				JAXBContext jc = JAXBContext.newInstance(JanglesConnections.class);
+				Unmarshaller unmarshaller = jc.createUnmarshaller();
+				File xml = new File(janglesConfiguration.connectionXmlPath);
+				janglesConnections = (JanglesConnections) unmarshaller.unmarshal(xml);
+			} catch (JAXBException e) {
+				e.printStackTrace();
+			}
+
+			return janglesConnections.getConnections().stream()
+					.filter(s -> s
+							.getName()
+							.equalsIgnoreCase(janglesConfiguration.testDbConnectionName))
+					.findFirst()
+					.get();
+
+	}
 }
