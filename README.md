@@ -1,7 +1,7 @@
 Jangles
 ============
 
-Jangles is a very lean Java application supporting caching, logging, dual Development/Testing MySQL connections, external global properties and connections configuration, localization and more. Jangles is intended to be used as a shared codebase for Java Microservice-structured Applications.
+Jangles is a small Java application built in Linux. It supports caching, logging, dual Development/Testing MySQL connections, external properties and connection config files, Guice injection, localization and more. Jangles is designed as a shared codebase for Java Distributed Applications.
 
  ## NixMash Posts by Branch
  
@@ -24,15 +24,14 @@ Jangles is a very lean Java application supporting caching, logging, dual Develo
 
 Jangles uses a Primary MySQL database and a Second Test MySQL database to support Stored Procedures and Functions (since H2 does not). **schema.sql** and **data.sql** scripts are in `/install/sql.` 
 
-Run **schema.sql** in *both* Primary and Test MySQL databases, run **data.sql** *in Primary database only*. MySQL Scripts for tests are located in `/test/resources` and run automatically.
+Create 2 MySQL databases as Primary and Test (ex: `janglesdb` and `janglestestdb`). Run **schema.sql** in *both* Primary and Test MySQL databases, run **data.sql** *in Primary database only*. (Test database uses MySQL Scripts in `/test/resources` which run on tests launch.
 
-Jangles uses an external Global Properties file and Connections.xml file,`global.properties` and `connections.xml`.  The files are initially located in `/install/external.` Enter the appropriate MySQL Connection information and copy them *to a subdirectory of your HOME FOLDER.* A `jangles.properties` file is located in `/resources` where your final step is entering the location of the external Global Properties and Connection files. The location will be relative to your *HOME FOLDER.*  
+Jangles uses external Properties and Connection Configuration files,`global.properties` and `connections.xml`.  A `jangles.properties` file is located in `/resources` where you will enter the path of the external files. *This location is relative to your home directory.*  
 
 Here is a summary of the setup process:
 
-1. Setup your Primary and Test MySQL databases. 
-2. Run the MySQL Setup scripts in `/install/sql`  (*schema.sql* and *data.sql* in Primary, then *schema.sql* in the Test DB.)
-3. Copy the files in`install/external` to a location outside your application 
+1. Create your Primary and Test MySQL databases and run the MySQL Setup scripts in `/install/sql.`  *schema.sql* and *data.sql* in Primary, then *schema.sql* in the Test DB.
+3. Configure and copy the external property files in`install/external` to a subfolder of your home directory
 4. Enter the path to those external files (`global.properties` and `connections.xml`) in `/resources/jangles.properties`
 
 ### To Run Application and Tests
@@ -50,7 +49,7 @@ You can then run the JAR with
 {PROJECT_ROOT}/$ java -jar target/jangles.jar
 ```
 
-**Last Updated:** *7/07/17*
+**Last Updated:** *7/09/17*
 
 
 
