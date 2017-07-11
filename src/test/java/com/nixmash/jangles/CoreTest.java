@@ -12,16 +12,15 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by daveburke on 6/6/17.
  */
 @RunWith(GuiceJUnit4Runner.class)
-public class CoreTests  {
+public class CoreTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(CoreTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(CoreTest.class);
 
     @Inject
     private JanglesGlobals janglesGlobals;
@@ -43,7 +42,7 @@ public class CoreTests  {
     @Test
     public void contextTests() {
         assertNotNull(janglesContext.config().applicationId);
-        assertNotNull(janglesContext.messages().getString("greetings"));
+        assertNotNull(janglesContext.messages().get("greetings"));
     }
 
     @Test
@@ -54,8 +53,16 @@ public class CoreTests  {
         JanglesLocalizer janglesLocalizer = new JanglesLocalizer(janglesConfiguration);
         JanglesContext mockContext = new JanglesContext(janglesConfiguration, janglesLocalizer);
 
-        String greetings = mockContext.messages().getString("greetings");
+        String greetings = mockContext.messages().get("greetings");
         assertTrue(greetings.contains("in french"));
+    }
+
+    @Test
+    public void localizationParsingTests() {
+        JanglesConfiguration janglesConfiguration = new JanglesConfiguration();
+        JanglesLocalizer janglesLocalizer = new JanglesLocalizer(janglesConfiguration);
+        assertEquals(janglesLocalizer.get("test.title"), "My Test Title");
+        assertEquals(janglesLocalizer.get("test.title.with.two.params", "One", "Two"), "My One and Two Test Title");
     }
 
     @Test
@@ -66,7 +73,7 @@ public class CoreTests  {
         JanglesLocalizer janglesLocalizer = new JanglesLocalizer(janglesConfiguration);
         JanglesContext mockContext = new JanglesContext(janglesConfiguration, janglesLocalizer);
 
-        String greetings = mockContext.messages().getString("greetings");
+        String greetings = mockContext.messages().get("greetings");
         assertNotNull(greetings);
     }
 

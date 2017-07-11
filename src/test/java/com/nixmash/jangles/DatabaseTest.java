@@ -22,11 +22,11 @@ import static com.nixmash.jangles.utils.JanglesUtils.configureTestDb;
  * Created by daveburke on 6/11/17.
  */
 @RunWith(GuiceJUnit4Runner.class)
-public class DatabaseTests   {
+public class DatabaseTest {
 
     // region Properties and Local Variables
 
-    private static final Logger logger = LoggerFactory.getLogger(DatabaseTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseTest.class);
 
     private  List<JanglesUser> users;
     private boolean isSetup = false;
@@ -65,5 +65,4 @@ public class DatabaseTests   {
                 janglesConfiguration.testDbConnectionName,
                 janglesConfiguration.mysqlDbConnectionName);
     }
-
 }

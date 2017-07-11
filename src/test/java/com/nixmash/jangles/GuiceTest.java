@@ -23,7 +23,7 @@ import static org.hamcrest.core.Is.is;
  * Created by daveburke on 6/19/17.
  */
 @RunWith(JUnit4.class)
-public class GuiceTests  {
+public class GuiceTest {
 
     @Inject
     private JanglesApiService janglesApiService;

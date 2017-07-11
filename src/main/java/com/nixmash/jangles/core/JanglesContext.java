@@ -3,7 +3,6 @@ package com.nixmash.jangles.core;
 import com.google.inject.Inject;
 
 import java.io.Serializable;
-import java.util.ResourceBundle;
 
 /**
  * Created by daveburke on 7/3/17.
@@ -23,8 +22,8 @@ public class JanglesContext implements Serializable{
         return this.janglesConfiguration;
     }
 
-    public ResourceBundle messages() {
-        return janglesLocalizer.get();
+    public JanglesLocalizer messages() {
+        return janglesLocalizer;
     }
 
 }
