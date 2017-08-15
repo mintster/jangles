@@ -41,7 +41,8 @@ public class DatabaseTest {
     @BeforeClass
     public static void setup(){
         try {
-            configureTestDb("populate.sql");
+            configureTestDb("schema.sql");
+            configureTestDb("data.sql");
         } catch (FileNotFoundException | SQLException e) {
             e.printStackTrace();
         }

@@ -22,15 +22,13 @@ Jangles is a small Java application built in Linux. It supports caching, logging
 
 ### Installation and Setup
 
-Jangles uses a Primary MySQL database and a Second Test MySQL database to support Stored Procedures and Functions (since H2 does not). **schema.sql** and **data.sql** scripts are in `/install/sql.` 
-
-Create 2 MySQL databases as Primary and Test (ex: `janglesdb` and `janglestestdb`). Run **schema.sql** in *both* Primary and Test MySQL databases, run **data.sql** *in Primary database only*. (Test database uses MySQL Scripts in `/test/resources` which run on tests launch.
+Jangles uses MySQL for development and H2 for testing. **schema.sql** and **data.sql** scripts for MySQL are in `/install/sql.`  Test database uses MySQL Scripts in `/test/resources` which run on test launch.
 
 Jangles uses external Properties and Connection Configuration files,`global.properties` and `connections.xml`.  A `jangles.properties` file is located in `/resources` where you will enter the path of the external files. *This location is relative to your home directory.*  
 
 Here is a summary of the setup process:
 
-1. Create your Primary and Test MySQL databases and run the MySQL Setup scripts in `/install/sql.`  *schema.sql* and *data.sql* in Primary, then *schema.sql* in the Test DB.
+1. Create your MySQL database and run the MySQL Setup scripts in `/install/sql.`
 3. Configure and copy the external property files in`install/external` to a subfolder of your home directory
 4. Enter the path to those external files (`global.properties` and `connections.xml`) in `/resources/jangles.properties`
 
@@ -49,7 +47,7 @@ You can then run the JAR with
 {PROJECT_ROOT}/$ java -jar target/jangles.jar
 ```
 
-**Last Updated:** *7/09/17*
+**Last Updated:** *8/15/17*
 
 
 
