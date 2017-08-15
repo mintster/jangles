@@ -22,9 +22,9 @@ Jangles is a small Java application built in Linux. It supports caching, logging
 
 ### Installation and Setup
 
-Jangles uses MySQL for development and H2 for testing. **schema.sql** and **data.sql** scripts for MySQL are in `/install/sql.`  Test database uses MySQL Scripts in `/test/resources` which run on test launch.
+Jangles uses MySQL for development and H2 for testing. **schema.sql** and **data.sql** scripts for MySQL are in `/install/sql.`  Test SQL scripts are located in `/test/resources` which run on test launch.
 
-Jangles uses external Properties and Connection Configuration files,`global.properties` and `connections.xml`.  A `jangles.properties` file is located in `/resources` where you will enter the path of the external files. *This location is relative to your home directory.*  
+Jangles uses external Property and Connection Configuration files,`global.properties` and `connections.xml`.  A `jangles.properties` file is located in `/resources` where you will enter the path of the external files. *This location is relative to your home directory.*  
 
 Here is a summary of the setup process:
 
