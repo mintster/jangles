@@ -28,6 +28,9 @@ public class CoreTest {
     @Inject
     private JanglesContext janglesContext;
 
+    @Inject
+    private JanglesConfiguration janglesConfiguration;
+
     @Test
     public void loggingTest() {
         assertNotNull(logger.isInfoEnabled());

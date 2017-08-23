@@ -70,6 +70,11 @@
             <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.jcs</groupId>
             <artifactId>jcs</artifactId>
             <version>${jcs.version}</version>
@@ -164,7 +169,7 @@
         </resources>
         <testResources>
             <testResource>
-                <directory>${basedir}/src/test/java</directory>
+                <directory>${basedir}/src/test/resources</directory>
             </testResource>
         </testResources>
 

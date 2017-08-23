@@ -1,24 +1,7 @@
 Jangles
 ============
 
-Jangles is a small Java application built in Linux. It supports caching, logging, dual Development/Testing MySQL connections, external properties and connection config files, Guice injection, localization and more. Jangles is designed as a shared codebase for Java Distributed Applications.
-
- ## NixMash Posts by Branch
- 
-  ### v2.0.0-Release-Two (in progress)
-  
-  * *Coming...*
-  
- ### v1.0.0-Release-One
- 
-* [Creating a Janglesweb WAR using Ant build files referencing Jangles Core and its reference library JARs](http://nixmash.com/java/referencing-project-libraries-in-wars-with-ant/)
-* [Janglesweb JAX-WS Web Client Configuration](http://nixmash.com/java/jangles-jax-ws-web-client-project-online/)
-* [Janglesweb JAX-WS Web Service Configuration](http://nixmash.com/java/jangles-jax-ws-web-service-project-now-on-github/)
-* [Jangles Data Provider Model in Action](http://nixmash.com/mysql/the-java-jangles-data-provider-model-in-action/)
-* [Using Log4j Logging Levels in Jangles](http://nixmash.com/java/changing-log4j-logging-levels-by-output-type/)
-* [Jangles Caching Wrapper](http://nixmash.com/java/the-java-jangles-caching-wrapper/)
-* [Configuring Apache2 Log4j and Commons Logging as used in Jangles](http://nixmash.com/java/configuring-apache-log4j-and-commons-logging/)
-* [Using Property Resource Files as used in Jangles](http://nixmash.com/java/loading-java-property-resource-files/)
+Jangles is a small Java application built in Linux. It supports caching, logging, dual MySQL - development / H2 - test connections, external properties and connection config files, Guice injection, localization and more. Jangles is designed as a shared codebase for Java Distributed Applications.
 
 ### Installation and Setup
 
@@ -47,7 +30,7 @@ You can then run the JAR with
 {PROJECT_ROOT}/$ java -jar target/jangles.jar
 ```
 
-**Last Updated:** *8/15/17*
+**Last Updated:** *8/23/17*
 
 
 
