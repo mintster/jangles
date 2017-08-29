@@ -3,7 +3,7 @@
 	<connection>
 		<name>mysql.janglesdb</name>
 		<environment>mysql</environment>
-		<username>dbuser</username>
+		<username>devuser</username>
 		<password>password</password>
 		<urlbase>jdbc:mysql://127.0.0.1/</urlbase>
 		<database>janglesdb</database>
@@ -13,7 +13,8 @@
 		<environment>h2</environment>
 		<username>sa</username>
 		<password></password>
-		<urlbase>jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1</urlbase>
-		<database></database>
+		<url>jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1</url>
+		<database>testdb</database>
+		<driver>org.h2.Driver</driver>
 	</connection>
 </connections>

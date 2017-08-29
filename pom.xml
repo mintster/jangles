@@ -60,6 +60,11 @@
             <version>2.2.5</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>8.5.20</version>
+        </dependency>
+        <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>javax.el</artifactId>
             <version>2.2.6</version>
@@ -78,11 +83,6 @@
             <groupId>org.apache.jcs</groupId>
             <artifactId>jcs</artifactId>
             <version>${jcs.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -117,9 +117,9 @@
             <version>${commons-io.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.alessio-santacroce</groupId>
-            <artifactId>multiline-string-literals</artifactId>
-            <version>${multiline.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson-annotations.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -138,11 +138,6 @@
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson-annotations.version}</version>
         </dependency>
     </dependencies>
 
@@ -163,9 +158,9 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
-                <resource>
-                    <directory>${basedir}/src/main/java</directory>
-                </resource>
+            <resource>
+                <directory>${basedir}/src/main/java</directory>
+            </resource>
         </resources>
         <testResources>
             <testResource>
@@ -194,7 +189,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
                 <configuration>
-                    <excludes />
+                    <excludes/>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
@@ -249,7 +244,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 
 </project>
