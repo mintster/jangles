@@ -31,7 +31,9 @@ public class UserServiceImpl implements UserService{
         User user = null;
         try {
             user = usersDb.getUser(username);
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            logger.error("Exception retrieving user by username: " + username);
+        }
         return user;
     }
 
@@ -40,7 +42,8 @@ public class UserServiceImpl implements UserService{
         List<User> users = null;
         try {
             users = usersDb.getUsers();
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            logger.error("Exception retrieving all users");}
         return users;
     }
 
@@ -50,7 +53,8 @@ public class UserServiceImpl implements UserService{
         logger.info("User with email:" + user.getEmail() + " hashedPassword:" +user.getPassword());
         try {
             user = usersDb.addUser(user);
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            logger.error("Exception adding user with username: " + user.getUsername());}
         return user;
     }
 
@@ -60,7 +64,8 @@ public class UserServiceImpl implements UserService{
         try {
             roles =  usersDb.getRoles(userId);
         }
-        catch (SQLException e) {}
+        catch (SQLException e) {
+            logger.error("Exception retrieving all roles");}
         return roles;
     }
 
